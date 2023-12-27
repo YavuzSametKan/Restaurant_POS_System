@@ -1,6 +1,6 @@
-﻿namespace POS_System.View
+﻿namespace POS_System.Model
 {
-    partial class frmCategoryView
+    partial class frmBillList
     {
         /// <summary>
         /// Required designer variable.
@@ -31,27 +31,59 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.btnClose = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.dgvSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvWaiter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvedit = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgvdel = new System.Windows.Forms.DataGridViewImageColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // addBtn
+            // headerLabel
             // 
-            this.addBtn.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.addBtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.addBtn.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.addBtn.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Normal;
-            this.addBtn.PressedState.ImageSize = new System.Drawing.Size(64, 64);
+            this.headerLabel.Size = new System.Drawing.Size(88, 32);
+            this.headerLabel.Text = "Bill List";
             // 
-            // label2
+            // saveBtn
             // 
-            this.label2.Size = new System.Drawing.Size(152, 32);
-            this.label2.Text = "Category List";
+            this.saveBtn.FlatAppearance.BorderSize = 0;
+            this.saveBtn.Location = new System.Drawing.Point(25, 22);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::POS_System.Properties.Resources.bills_w;
+            // 
+            // closeBtn
+            // 
+            this.closeBtn.FlatAppearance.BorderSize = 0;
+            this.closeBtn.Location = new System.Drawing.Point(192, 22);
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(0, 586);
+            this.panel1.Size = new System.Drawing.Size(1052, 10);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.FillColor = System.Drawing.Color.Red;
+            this.btnClose.IconColor = System.Drawing.Color.White;
+            this.btnClose.Location = new System.Drawing.Point(1022, -1);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(30, 29);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // guna2DataGridView1
             // 
@@ -75,25 +107,31 @@
             this.guna2DataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvSno,
             this.dgvid,
-            this.dgvName,
+            this.dgvTable,
+            this.dgvWaiter,
+            this.dgvType,
+            this.dgvStatus,
+            this.dgvTotal,
+            this.dgvDate,
+            this.dgvTime,
             this.dgvedit,
             this.dgvdel});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.guna2DataGridView1.Location = new System.Drawing.Point(58, 177);
+            this.guna2DataGridView1.Location = new System.Drawing.Point(42, 161);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersVisible = false;
             this.guna2DataGridView1.RowTemplate.Height = 40;
-            this.guna2DataGridView1.Size = new System.Drawing.Size(884, 386);
-            this.guna2DataGridView1.TabIndex = 4;
+            this.guna2DataGridView1.Size = new System.Drawing.Size(961, 396);
+            this.guna2DataGridView1.TabIndex = 5;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
@@ -134,18 +172,54 @@
             this.dgvid.ReadOnly = true;
             this.dgvid.Visible = false;
             // 
-            // dgvName
+            // dgvTable
             // 
-            this.dgvName.HeaderText = "Name";
-            this.dgvName.Name = "dgvName";
-            this.dgvName.ReadOnly = true;
+            this.dgvTable.HeaderText = "Table";
+            this.dgvTable.Name = "dgvTable";
+            this.dgvTable.ReadOnly = true;
+            // 
+            // dgvWaiter
+            // 
+            this.dgvWaiter.HeaderText = "Waiter";
+            this.dgvWaiter.Name = "dgvWaiter";
+            this.dgvWaiter.ReadOnly = true;
+            // 
+            // dgvType
+            // 
+            this.dgvType.HeaderText = "Order Type";
+            this.dgvType.Name = "dgvType";
+            this.dgvType.ReadOnly = true;
+            // 
+            // dgvStatus
+            // 
+            this.dgvStatus.HeaderText = "Status";
+            this.dgvStatus.Name = "dgvStatus";
+            this.dgvStatus.ReadOnly = true;
+            // 
+            // dgvTotal
+            // 
+            this.dgvTotal.HeaderText = "Total";
+            this.dgvTotal.Name = "dgvTotal";
+            this.dgvTotal.ReadOnly = true;
+            // 
+            // dgvDate
+            // 
+            this.dgvDate.HeaderText = "Date";
+            this.dgvDate.Name = "dgvDate";
+            this.dgvDate.ReadOnly = true;
+            // 
+            // dgvTime
+            // 
+            this.dgvTime.HeaderText = "Time";
+            this.dgvTime.Name = "dgvTime";
+            this.dgvTime.ReadOnly = true;
             // 
             // dgvedit
             // 
             this.dgvedit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.dgvedit.FillWeight = 50F;
             this.dgvedit.HeaderText = "";
-            this.dgvedit.Image = global::POS_System.Properties.Resources.edit;
+            this.dgvedit.Image = global::POS_System.Properties.Resources.left_arrow;
             this.dgvedit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dgvedit.MinimumWidth = 50;
             this.dgvedit.Name = "dgvedit";
@@ -162,34 +236,42 @@
             this.dgvdel.MinimumWidth = 50;
             this.dgvdel.Name = "dgvdel";
             this.dgvdel.ReadOnly = true;
+            this.dgvdel.Visible = false;
             this.dgvdel.Width = 50;
             // 
-            // frmCategoryView
+            // frmBillList
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1014, 613);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1052, 596);
             this.Controls.Add(this.guna2DataGridView1);
-            this.Name = "frmCategoryView";
-            this.Text = "frmCategoryView";
-            this.Load += new System.EventHandler(this.frmCategoryView_Load);
-            this.Controls.SetChildIndex(this.guna2Separator1, 0);
-            this.Controls.SetChildIndex(this.searchInput, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.addBtn, 0);
+            this.Controls.Add(this.btnClose);
+            this.Name = "frmBillList";
+            this.Text = "frmBillList";
+            this.Load += new System.EventHandler(this.frmBillList_Load);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.btnClose, 0);
             this.Controls.SetChildIndex(this.guna2DataGridView1, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
+        private Guna.UI2.WinForms.Guna2ControlBox btnClose;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvWaiter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTime;
         private System.Windows.Forms.DataGridViewImageColumn dgvedit;
         private System.Windows.Forms.DataGridViewImageColumn dgvdel;
     }

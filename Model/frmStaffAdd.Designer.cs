@@ -36,6 +36,7 @@
             this.roleComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -56,6 +57,11 @@
             // 
             this.closeBtn.FlatAppearance.BorderSize = 0;
             this.closeBtn.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(0, 460);
+            this.panel1.Size = new System.Drawing.Size(477, 85);
             // 
             // nameInput
             // 
@@ -137,6 +143,7 @@
             "Waiter",
             "Cleaning",
             "Manager",
+            "Driver",
             "Other"});
             this.roleComboBox.Location = new System.Drawing.Point(39, 377);
             this.roleComboBox.Name = "roleComboBox";
@@ -170,7 +177,15 @@
             this.Controls.Add(this.label1);
             this.Name = "frmStaffAdd";
             this.Text = "frmStaffAdd";
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.nameInput, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.phoneInput, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.roleComboBox, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

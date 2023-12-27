@@ -86,7 +86,12 @@ namespace POS_System
         private void POSBtn_Click(object sender, EventArgs e)
         {
             frmPOS frm = new frmPOS();
-            frm.Show();
+            frm.ShowDialog();
+        }
+
+        private void kitchenBtn_Click(object sender, EventArgs e)
+        {
+            AddControls(new frmKitchenView());
         }
     }
 }

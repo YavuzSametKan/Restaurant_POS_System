@@ -18,7 +18,7 @@ namespace POS_System.Model
         {
             InitializeComponent();
         }
-        public string waiterName;
+        public string waiterName = "";
         private void frmWaiterSelect_Load(object sender, EventArgs e)
         {
             string qry = "SELECT * FROM staff WHERE sRole LIKE 'Waiter'";
@@ -46,6 +46,11 @@ namespace POS_System.Model
         private void btn_Click(object sender, EventArgs e)
         {
             waiterName = (sender as Guna.UI2.WinForms.Guna2Button).Text.ToString();
+            this.Close();
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }
