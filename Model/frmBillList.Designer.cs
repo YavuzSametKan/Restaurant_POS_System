@@ -43,7 +43,9 @@
             this.dgvDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvedit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dgvdel = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dgvPrint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.fromThisDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.toThisDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
@@ -70,7 +72,8 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 586);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
+            this.panel1.Location = new System.Drawing.Point(0, 744);
             this.panel1.Size = new System.Drawing.Size(1052, 10);
             // 
             // btnClose
@@ -115,7 +118,7 @@
             this.dgvDate,
             this.dgvTime,
             this.dgvedit,
-            this.dgvdel});
+            this.dgvPrint});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -125,12 +128,12 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.guna2DataGridView1.Location = new System.Drawing.Point(42, 161);
+            this.guna2DataGridView1.Location = new System.Drawing.Point(42, 196);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersVisible = false;
             this.guna2DataGridView1.RowTemplate.Height = 40;
-            this.guna2DataGridView1.Size = new System.Drawing.Size(961, 396);
+            this.guna2DataGridView1.Size = new System.Drawing.Size(961, 513);
             this.guna2DataGridView1.TabIndex = 5;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -226,24 +229,57 @@
             this.dgvedit.ReadOnly = true;
             this.dgvedit.Width = 50;
             // 
-            // dgvdel
+            // dgvPrint
             // 
-            this.dgvdel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvdel.FillWeight = 50F;
-            this.dgvdel.HeaderText = "";
-            this.dgvdel.Image = global::POS_System.Properties.Resources.delete;
-            this.dgvdel.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dgvdel.MinimumWidth = 50;
-            this.dgvdel.Name = "dgvdel";
-            this.dgvdel.ReadOnly = true;
-            this.dgvdel.Visible = false;
-            this.dgvdel.Width = 50;
+            this.dgvPrint.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvPrint.FillWeight = 50F;
+            this.dgvPrint.HeaderText = "";
+            this.dgvPrint.Image = global::POS_System.Properties.Resources.printer;
+            this.dgvPrint.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dgvPrint.MinimumWidth = 50;
+            this.dgvPrint.Name = "dgvPrint";
+            this.dgvPrint.ReadOnly = true;
+            this.dgvPrint.Width = 50;
+            // 
+            // fromThisDate
+            // 
+            this.fromThisDate.BorderRadius = 5;
+            this.fromThisDate.Checked = true;
+            this.fromThisDate.FillColor = System.Drawing.Color.White;
+            this.fromThisDate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.fromThisDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.fromThisDate.Location = new System.Drawing.Point(42, 143);
+            this.fromThisDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.fromThisDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.fromThisDate.Name = "fromThisDate";
+            this.fromThisDate.Size = new System.Drawing.Size(200, 36);
+            this.fromThisDate.TabIndex = 6;
+            this.fromThisDate.Value = new System.DateTime(2023, 12, 28, 0, 41, 43, 275);
+            this.fromThisDate.ValueChanged += new System.EventHandler(this.fromThisDate_ValueChanged);
+            // 
+            // toThisDate
+            // 
+            this.toThisDate.BorderRadius = 5;
+            this.toThisDate.Checked = true;
+            this.toThisDate.FillColor = System.Drawing.Color.White;
+            this.toThisDate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toThisDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.toThisDate.Location = new System.Drawing.Point(274, 143);
+            this.toThisDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.toThisDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.toThisDate.Name = "toThisDate";
+            this.toThisDate.Size = new System.Drawing.Size(200, 36);
+            this.toThisDate.TabIndex = 6;
+            this.toThisDate.Value = new System.DateTime(2023, 12, 28, 0, 41, 43, 275);
+            this.toThisDate.ValueChanged += new System.EventHandler(this.toThisDate_ValueChanged);
             // 
             // frmBillList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1052, 596);
+            this.ClientSize = new System.Drawing.Size(1052, 754);
+            this.Controls.Add(this.toThisDate);
+            this.Controls.Add(this.fromThisDate);
             this.Controls.Add(this.guna2DataGridView1);
             this.Controls.Add(this.btnClose);
             this.Name = "frmBillList";
@@ -252,6 +288,8 @@
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnClose, 0);
             this.Controls.SetChildIndex(this.guna2DataGridView1, 0);
+            this.Controls.SetChildIndex(this.fromThisDate, 0);
+            this.Controls.SetChildIndex(this.toThisDate, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
@@ -263,6 +301,8 @@
 
         private Guna.UI2.WinForms.Guna2ControlBox btnClose;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
+        private Guna.UI2.WinForms.Guna2DateTimePicker fromThisDate;
+        private Guna.UI2.WinForms.Guna2DateTimePicker toThisDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTable;
@@ -273,6 +313,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTime;
         private System.Windows.Forms.DataGridViewImageColumn dgvedit;
-        private System.Windows.Forms.DataGridViewImageColumn dgvdel;
+        private System.Windows.Forms.DataGridViewImageColumn dgvPrint;
     }
 }

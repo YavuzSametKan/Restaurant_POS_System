@@ -35,6 +35,7 @@ namespace POS_System.Model
         {
             this.Close();
         }
+
         private void frmPOS_Load(object sender, EventArgs e)
         {
             AddCategoryBtns();
@@ -79,7 +80,7 @@ namespace POS_System.Model
             Guna.UI2.WinForms.Guna2Button btn = (Guna.UI2.WinForms.Guna2Button)sender;
             foreach (var item in productPanel.Controls)
             {
-                var product = (ucProduct)item;
+                ucProduct product = (ucProduct)item;
                 product.Visible = product.PCategory.ToLower().Contains(btn.Text.Trim().ToLower());
             }
         }
@@ -125,6 +126,26 @@ namespace POS_System.Model
             };
         }
 
+        private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (MainID == 0)
+            {
+                if (guna2DataGridView1.CurrentCell.OwningColumn.Name == "dgvdelete")
+                {
+                    int qty = int.Parse(guna2DataGridView1.CurrentRow.Cells["dgvQty"].Value.ToString());
+                    if (qty > 1)
+                    {
+                        guna2DataGridView1.CurrentRow.Cells["dgvQty"].Value = --qty;
+                        guna2DataGridView1.CurrentRow.Cells["dgvAmount"].Value = qty * double.Parse(guna2DataGridView1.CurrentRow.Cells["dgvPrice"].Value.ToString());
+                    }
+                    else
+                    {
+                        guna2DataGridView1.Rows.RemoveAt(guna2DataGridView1.CurrentRow.Index);
+                    }
+                    GetTotal();
+                }
+            }
+        }
 
         // Getting product from database
         private void LoadProducts()
@@ -196,6 +217,7 @@ namespace POS_System.Model
         private void newBtn_Click(object sender, EventArgs e)
         {
             // Reset to the POS screen
+            guna2DataGridView1.Columns["dgvdelete"].Visible = true;
             tableLabel.Text = "";
             waiterLabel.Text = "";
             driverLabel.Text = "";
@@ -568,6 +590,7 @@ namespace POS_System.Model
             {
                 id = frm.MainID;
                 MainID = frm.MainID;
+                guna2DataGridView1.Columns["dgvdelete"].Visible = false;
                 LoadEntries();
             }
             
@@ -591,10 +614,14 @@ namespace POS_System.Model
                 OrderType = "Delivery";
                 deliveryBtn.Checked = true;
                 label6.Visible = true;
+                label3.Visible = false;
+                label4.Visible = false;
                 driverLabel.Text = dt.Rows[0]["sName"].ToString() + " will delivery to " + dt.Rows[0]["customerName"].ToString() + " (" + dt.Rows[0]["customerPhone"].ToString() + ")";
                 driverLabel.Visible = true;
                 waiterLabel.Visible = false;
                 tableLabel.Visible = false;
+                waiterLabel.Text = "";
+                tableLabel.Text = "";
             }
             else if(dt.Rows[0]["orderType"].ToString() == "Take Away")
             {
@@ -602,6 +629,13 @@ namespace POS_System.Model
                 takeAwayBtn.Checked = true;
                 waiterLabel.Visible = false;
                 tableLabel.Visible = false;
+                driverLabel.Visible = false;
+                waiterLabel.Text = "";
+                tableLabel.Text = "";
+                driverLabel.Text = "";
+                label3.Visible = false;
+                label4.Visible = false;
+                label6.Visible = false;
             }
             else
             {
@@ -613,6 +647,9 @@ namespace POS_System.Model
                 tableLabel.Visible = true;
                 label3.Visible = true;
                 label4.Visible = true;
+                label6.Visible = false;
+                driverLabel.Visible = false;
+                driverLabel.Text = "";
             }
 
             guna2DataGridView1.Rows.Clear();

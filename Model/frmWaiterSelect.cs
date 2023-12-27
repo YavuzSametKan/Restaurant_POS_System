@@ -17,11 +17,12 @@ namespace POS_System.Model
         public frmWaiterSelect()
         {
             InitializeComponent();
+            AddRoundedStyleToForm.ApplyRoundedFormStyle(this);
         }
         public string waiterName = "";
         private void frmWaiterSelect_Load(object sender, EventArgs e)
         {
-            string qry = "SELECT * FROM staff WHERE sRole LIKE 'Waiter'";
+            string qry = "SELECT * FROM staff WHERE sRole LIKE 'Waiter' ORDER BY sName ASC";
             SQLiteCommand cmd = new SQLiteCommand(qry, DataBaseOperations.DataBaseConnection.con);
             DataTable dt = new DataTable();
             SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);

@@ -24,20 +24,14 @@ namespace POS_System.Model
 
         private void frmBillList_Load(object sender, EventArgs e)
         {
-            LoadData();
-
-            foreach(DataGridViewRow row in guna2DataGridView1.Rows)
-            { // if status value is paid edit btn is unvisible
-                if(row.Cells["dgvStatus"].Value?.ToString() == "Paid")
-                {
-                    row.Cells["dgvedit"].Value = new System.Drawing.Bitmap(1, 1);
-                }
-            }
+            string qry = $"SELECT mainID,tableName,waiterName,orderType,status,total,date,time FROM tblMain WHERE status <> 'Pending' AND date = '{DateTime.Now.Date.ToString("dd.MM.yyyy")}' ORDER BY mainID DESC";
+            LoadData(qry);
         }
 
-        private void LoadData()
+        private void LoadData(string qry)
         {
-            string qry = "SELECT mainID,tableName,waiterName,orderType,status,total,date,time FROM tblMain WHERE status <> 'Pending' ORDER BY mainID DESC";
+            
+            //string qry = $"SELECT mainID,tableName,waiterName,orderType,status,total,date,time FROM tblMain WHERE status <> 'Pending' AND date = '{DateTime.Now.Date.ToString("dd.MM.yyyy")}' ORDER BY mainID DESC";
             ListBox lb = new ListBox();
             lb.Items.Add(dgvid);
             lb.Items.Add(dgvTable);
@@ -49,6 +43,14 @@ namespace POS_System.Model
             lb.Items.Add(dgvTime);
 
             DataBaseOperations.CRUDOperations.LoadData(qry, guna2DataGridView1, lb);
+
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
+            { // if status value is paid edit btn is unvisible
+                if (row.Cells["dgvStatus"].Value?.ToString() == "Paid")
+                {
+                    row.Cells["dgvedit"].Value = new System.Drawing.Bitmap(1, 1);
+                }
+            }
         }
 
         private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -64,6 +66,24 @@ namespace POS_System.Model
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void fromThisDate_ValueChanged(object sender, EventArgs e)
+        {
+            string qry = "SELECT mainID,tableName,waiterName,orderType,status,total,date,time FROM tblMain " +
+                "WHERE status <> 'Pending' " +
+                $"AND date BETWEEN '{fromThisDate.Value.ToString("dd.MM.yyyy")}' AND '{toThisDate.Value.ToString("dd.MM.yyyy")}' " +
+                "ORDER BY mainID DESC";
+            LoadData(qry);
+        }
+
+        private void toThisDate_ValueChanged(object sender, EventArgs e)
+        {
+            string qry = "SELECT mainID,tableName,waiterName,orderType,status,total,date,time FROM tblMain " +
+                "WHERE status <> 'Pending' " +
+                $"AND date BETWEEN '{fromThisDate.Value.ToString("dd.MM.yyyy")}' AND '{toThisDate.Value.ToString("dd.MM.yyyy")}' " +
+                "ORDER BY mainID DESC";
+            LoadData(qry);
         }
     }
 }
