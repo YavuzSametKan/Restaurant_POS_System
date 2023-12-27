@@ -27,8 +27,6 @@ namespace POS_System.View
 
         public void GetData()
         {
-            //guna2DataGridView1.Columns["dgvSno"].DisplayIndex = 0;
-            
             string qry = $"SELECT pID,pName,pPrice,categoryID,c.catName FROM products p INNER JOIN category c ON c.catID = p.categoryID WHERE pName LIKE '%{searchInput.Text}%' " +
                 $"OR c.catName LIKE '%{searchInput.Text}%' " +
                 $"OR pPrice LIKE '%{searchInput.Text}%'";

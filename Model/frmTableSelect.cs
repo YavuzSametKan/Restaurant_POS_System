@@ -19,7 +19,7 @@ namespace POS_System.Model
             InitializeComponent();
         }
 
-        public string TableName;
+        public string TableName = "";
 
         private void frmTableSelect_Load(object sender, EventArgs e)
         {
@@ -48,6 +48,11 @@ namespace POS_System.Model
         private void btn_Click(object sender, EventArgs e)
         {
             TableName = (sender as Guna.UI2.WinForms.Guna2Button).Text.ToString();
+            this.Close();
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

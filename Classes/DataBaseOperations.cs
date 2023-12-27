@@ -52,7 +52,6 @@ namespace POS_System.Classes
             }
 
             // for loading data from database
-
             public static void LoadData(string qry, DataGridView gv, ListBox lb)
             {
                 var con = DataBaseConnection.con;
@@ -68,8 +67,8 @@ namespace POS_System.Classes
 
                     for(int i = 0; i < lb.Items.Count; i++)
                     {
-                        string colNam1 = ((DataGridViewColumn)lb.Items[i]).Name;
-                        gv.Columns[colNam1].DataPropertyName = dt.Columns[i].ToString();
+                        string colName = ((DataGridViewColumn)lb.Items[i]).Name;
+                        gv.Columns[colName].DataPropertyName = dt.Columns[i].ToString();
                     }
 
                     gv.DataSource = dt;

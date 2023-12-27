@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPOS));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.dineInBtn = new Guna.UI2.WinForms.Guna2TileButton();
             this.takeAwayBtn = new Guna.UI2.WinForms.Guna2TileButton();
@@ -39,20 +40,24 @@
             this.KOTBtn = new Guna.UI2.WinForms.Guna2TileButton();
             this.billListBtn = new Guna.UI2.WinForms.Guna2TileButton();
             this.holdBtn = new Guna.UI2.WinForms.Guna2TileButton();
+            this.driverLabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.newBtn = new Guna.UI2.WinForms.Guna2TileButton();
+            this.label4 = new System.Windows.Forms.Label();
             this.waiterLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.closeBtn = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.checkOutBtn = new Guna.UI2.WinForms.Guna2Button();
             this.totalLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.categoryPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.allCategoryBtn = new Guna.UI2.WinForms.Guna2Button();
             this.productPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.searchInput = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvProID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +65,9 @@
             this.dgvQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.myMessageBox = new Guna.UI2.WinForms.Guna2MessageDialog();
+            this.myWarningMessageBox = new Guna.UI2.WinForms.Guna2MessageDialog();
+            this.searchInput = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
@@ -76,8 +84,12 @@
             this.guna2Panel1.Controls.Add(this.KOTBtn);
             this.guna2Panel1.Controls.Add(this.billListBtn);
             this.guna2Panel1.Controls.Add(this.holdBtn);
+            this.guna2Panel1.Controls.Add(this.driverLabel);
+            this.guna2Panel1.Controls.Add(this.label6);
             this.guna2Panel1.Controls.Add(this.newBtn);
+            this.guna2Panel1.Controls.Add(this.label4);
             this.guna2Panel1.Controls.Add(this.waiterLabel);
+            this.guna2Panel1.Controls.Add(this.label3);
             this.guna2Panel1.Controls.Add(this.tableLabel);
             this.guna2Panel1.Controls.Add(this.label1);
             this.guna2Panel1.Controls.Add(this.closeBtn);
@@ -95,6 +107,7 @@
             this.dineInBtn.BorderColor = System.Drawing.Color.White;
             this.dineInBtn.BorderRadius = 18;
             this.dineInBtn.BorderThickness = 2;
+            this.dineInBtn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.dineInBtn.CheckedState.BorderColor = System.Drawing.Color.White;
             this.dineInBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
             this.dineInBtn.CheckedState.ForeColor = System.Drawing.Color.White;
@@ -124,6 +137,7 @@
             this.takeAwayBtn.BorderColor = System.Drawing.Color.White;
             this.takeAwayBtn.BorderRadius = 18;
             this.takeAwayBtn.BorderThickness = 2;
+            this.takeAwayBtn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.takeAwayBtn.CheckedState.BorderColor = System.Drawing.Color.White;
             this.takeAwayBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
             this.takeAwayBtn.CheckedState.ForeColor = System.Drawing.Color.White;
@@ -153,6 +167,7 @@
             this.deliveryBtn.BorderColor = System.Drawing.Color.White;
             this.deliveryBtn.BorderRadius = 18;
             this.deliveryBtn.BorderThickness = 2;
+            this.deliveryBtn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.deliveryBtn.CheckedState.BorderColor = System.Drawing.Color.White;
             this.deliveryBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
             this.deliveryBtn.CheckedState.ForeColor = System.Drawing.Color.White;
@@ -232,6 +247,7 @@
             this.billListBtn.TabIndex = 3;
             this.billListBtn.Text = "Bill List";
             this.billListBtn.UseTransparentBackground = true;
+            this.billListBtn.Click += new System.EventHandler(this.billListBtn_Click);
             // 
             // holdBtn
             // 
@@ -260,6 +276,37 @@
             this.holdBtn.TabIndex = 3;
             this.holdBtn.Text = "Hold";
             this.holdBtn.UseTransparentBackground = true;
+            this.holdBtn.Click += new System.EventHandler(this.holdBtn_Click);
+            // 
+            // driverLabel
+            // 
+            this.driverLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.driverLabel.AutoSize = true;
+            this.driverLabel.BackColor = System.Drawing.Color.Transparent;
+            this.driverLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.driverLabel.ForeColor = System.Drawing.Color.White;
+            this.driverLabel.Location = new System.Drawing.Point(874, 37);
+            this.driverLabel.Name = "driverLabel";
+            this.driverLabel.Size = new System.Drawing.Size(113, 25);
+            this.driverLabel.TabIndex = 2;
+            this.driverLabel.Text = "driver name";
+            this.driverLabel.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(749, 37);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(132, 25);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Delivery Info:";
+            this.label6.Visible = false;
             // 
             // newBtn
             // 
@@ -290,30 +337,64 @@
             this.newBtn.UseTransparentBackground = true;
             this.newBtn.Click += new System.EventHandler(this.newBtn_Click);
             // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(749, 53);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 30);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Waiter:";
+            this.label4.Visible = false;
+            // 
             // waiterLabel
             // 
+            this.waiterLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.waiterLabel.AutoSize = true;
             this.waiterLabel.BackColor = System.Drawing.Color.Transparent;
             this.waiterLabel.Font = new System.Drawing.Font("Segoe UI", 16F);
             this.waiterLabel.ForeColor = System.Drawing.Color.White;
-            this.waiterLabel.Location = new System.Drawing.Point(745, 54);
+            this.waiterLabel.Location = new System.Drawing.Point(825, 53);
             this.waiterLabel.Name = "waiterLabel";
-            this.waiterLabel.Size = new System.Drawing.Size(87, 30);
+            this.waiterLabel.Size = new System.Drawing.Size(132, 30);
             this.waiterLabel.TabIndex = 2;
-            this.waiterLabel.Text = "Waiter: ";
+            this.waiterLabel.Text = "waiter name";
             this.waiterLabel.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(749, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 30);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Table:";
+            this.label3.Visible = false;
             // 
             // tableLabel
             // 
+            this.tableLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLabel.AutoSize = true;
             this.tableLabel.BackColor = System.Drawing.Color.Transparent;
             this.tableLabel.Font = new System.Drawing.Font("Segoe UI", 16F);
             this.tableLabel.ForeColor = System.Drawing.Color.White;
-            this.tableLabel.Location = new System.Drawing.Point(745, 16);
+            this.tableLabel.Location = new System.Drawing.Point(812, 15);
             this.tableLabel.Name = "tableLabel";
-            this.tableLabel.Size = new System.Drawing.Size(64, 30);
+            this.tableLabel.Size = new System.Drawing.Size(121, 30);
             this.tableLabel.TabIndex = 2;
-            this.tableLabel.Text = "Table";
+            this.tableLabel.Text = "table name";
             this.tableLabel.Visible = false;
             // 
             // label1
@@ -359,6 +440,7 @@
             // 
             // guna2Panel2
             // 
+            this.guna2Panel2.Controls.Add(this.checkOutBtn);
             this.guna2Panel2.Controls.Add(this.totalLabel);
             this.guna2Panel2.Controls.Add(this.label2);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -368,6 +450,28 @@
             this.guna2Panel2.Size = new System.Drawing.Size(1271, 100);
             this.guna2Panel2.TabIndex = 0;
             // 
+            // checkOutBtn
+            // 
+            this.checkOutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkOutBtn.BackColor = System.Drawing.Color.Transparent;
+            this.checkOutBtn.BorderRadius = 25;
+            this.checkOutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkOutBtn.CustomizableEdges.TopLeft = false;
+            this.checkOutBtn.CustomizableEdges.TopRight = false;
+            this.checkOutBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.checkOutBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.checkOutBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.checkOutBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.checkOutBtn.FillColor = System.Drawing.Color.White;
+            this.checkOutBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkOutBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
+            this.checkOutBtn.Location = new System.Drawing.Point(971, 0);
+            this.checkOutBtn.Name = "checkOutBtn";
+            this.checkOutBtn.Size = new System.Drawing.Size(119, 88);
+            this.checkOutBtn.TabIndex = 3;
+            this.checkOutBtn.Text = "Check Out";
+            this.checkOutBtn.Click += new System.EventHandler(this.checkOutBtn_Click);
+            // 
             // totalLabel
             // 
             this.totalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -375,11 +479,11 @@
             this.totalLabel.BackColor = System.Drawing.Color.Transparent;
             this.totalLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.totalLabel.ForeColor = System.Drawing.Color.White;
-            this.totalLabel.Location = new System.Drawing.Point(1138, 36);
+            this.totalLabel.Location = new System.Drawing.Point(1168, 36);
             this.totalLabel.Name = "totalLabel";
-            this.totalLabel.Size = new System.Drawing.Size(67, 30);
+            this.totalLabel.Size = new System.Drawing.Size(55, 30);
             this.totalLabel.TabIndex = 2;
-            this.totalLabel.Text = "0,00₺";
+            this.totalLabel.Text = "0,00";
             // 
             // label2
             // 
@@ -388,7 +492,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(1074, 36);
+            this.label2.Location = new System.Drawing.Point(1104, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 30);
             this.label2.TabIndex = 2;
@@ -509,34 +613,6 @@
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.guna2DataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.guna2DataGridView1_CellFormatting);
             // 
-            // searchInput
-            // 
-            this.searchInput.BorderColor = System.Drawing.Color.Silver;
-            this.searchInput.BorderRadius = 10;
-            this.searchInput.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.searchInput.DefaultText = "";
-            this.searchInput.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.searchInput.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.searchInput.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.searchInput.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.searchInput.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.searchInput.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.searchInput.ForeColor = System.Drawing.Color.Gray;
-            this.searchInput.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.searchInput.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.searchInput.IconLeftSize = new System.Drawing.Size(15, 15);
-            this.searchInput.IconRight = global::POS_System.Properties.Resources.search_g;
-            this.searchInput.IconRightOffset = new System.Drawing.Point(5, 0);
-            this.searchInput.IconRightSize = new System.Drawing.Size(15, 15);
-            this.searchInput.Location = new System.Drawing.Point(218, 112);
-            this.searchInput.Name = "searchInput";
-            this.searchInput.PasswordChar = '\0';
-            this.searchInput.PlaceholderText = "Search Product...";
-            this.searchInput.SelectedText = "";
-            this.searchInput.Size = new System.Drawing.Size(258, 40);
-            this.searchInput.TabIndex = 7;
-            this.searchInput.TextChanged += new System.EventHandler(this.searchInput_TextChanged);
-            // 
             // dgvSno
             // 
             this.dgvSno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -598,6 +674,52 @@
             this.dgvAmount.ReadOnly = true;
             this.dgvAmount.Width = 75;
             // 
+            // myMessageBox
+            // 
+            this.myMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
+            this.myMessageBox.Caption = "Information";
+            this.myMessageBox.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information;
+            this.myMessageBox.Parent = this;
+            this.myMessageBox.Style = Guna.UI2.WinForms.MessageDialogStyle.Light;
+            this.myMessageBox.Text = null;
+            // 
+            // myWarningMessageBox
+            // 
+            this.myWarningMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
+            this.myWarningMessageBox.Caption = "Warning";
+            this.myWarningMessageBox.Icon = Guna.UI2.WinForms.MessageDialogIcon.Warning;
+            this.myWarningMessageBox.Parent = this;
+            this.myWarningMessageBox.Style = Guna.UI2.WinForms.MessageDialogStyle.Default;
+            this.myWarningMessageBox.Text = null;
+            // 
+            // searchInput
+            // 
+            this.searchInput.BorderColor = System.Drawing.Color.Silver;
+            this.searchInput.BorderRadius = 10;
+            this.searchInput.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.searchInput.DefaultText = "";
+            this.searchInput.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.searchInput.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.searchInput.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchInput.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchInput.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchInput.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.searchInput.ForeColor = System.Drawing.Color.Gray;
+            this.searchInput.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchInput.IconLeftOffset = new System.Drawing.Point(5, 0);
+            this.searchInput.IconLeftSize = new System.Drawing.Size(15, 15);
+            this.searchInput.IconRight = global::POS_System.Properties.Resources.search_g;
+            this.searchInput.IconRightOffset = new System.Drawing.Point(5, 0);
+            this.searchInput.IconRightSize = new System.Drawing.Size(15, 15);
+            this.searchInput.Location = new System.Drawing.Point(218, 112);
+            this.searchInput.Name = "searchInput";
+            this.searchInput.PasswordChar = '\0';
+            this.searchInput.PlaceholderText = "Search Product...";
+            this.searchInput.SelectedText = "";
+            this.searchInput.Size = new System.Drawing.Size(258, 40);
+            this.searchInput.TabIndex = 7;
+            this.searchInput.TextChanged += new System.EventHandler(this.searchInput_TextChanged);
+            // 
             // frmPOS
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -611,6 +733,7 @@
             this.Controls.Add(this.guna2Panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmPOS";
             this.Text = "frmPOS";
@@ -658,5 +781,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAmount;
+        private Guna.UI2.WinForms.Guna2MessageDialog myMessageBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private Guna.UI2.WinForms.Guna2MessageDialog myWarningMessageBox;
+        private Guna.UI2.WinForms.Guna2Button checkOutBtn;
+        private System.Windows.Forms.Label driverLabel;
+        private System.Windows.Forms.Label label6;
     }
 }

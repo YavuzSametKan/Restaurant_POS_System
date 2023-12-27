@@ -159,6 +159,7 @@
             this.kitchenBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.kitchenBtn.TextOffset = new System.Drawing.Point(20, 0);
             this.kitchenBtn.UseTransparentBackground = true;
+            this.kitchenBtn.Click += new System.EventHandler(this.kitchenBtn_Click);
             // 
             // POSBtn
             // 
@@ -437,6 +438,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
