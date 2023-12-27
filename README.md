@@ -1,1 +1,2 @@
-# POS_System
+# Restaurant POS System
+### Coding continues for the final view...
