@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using POS_System.Classes;
+using System.Drawing.Printing;
 
 namespace POS_System.Model
 {
@@ -21,6 +22,9 @@ namespace POS_System.Model
         }
 
         public int MainID = 0;
+        private int printID = 0;
+        private int PrintingHeight;
+        private string printingData;
 
         private void frmBillList_Load(object sender, EventArgs e)
         {
@@ -61,6 +65,28 @@ namespace POS_System.Model
                 MainID = Convert.ToInt32(guna2DataGridView1.CurrentRow.Cells["dgvid"].Value);
                 this.Close();
             }
+
+            if (guna2DataGridView1.CurrentCell.OwningColumn.Name == "dgvPrint")
+            { // Printing Receipt
+                printID = Convert.ToInt32(guna2DataGridView1.CurrentRow.Cells["dgvid"].Value);
+                string printingDatasQry = @"SELECT date, time, paymentMethod, orderType, pName, qty, price, amount, received, change, total FROM tblMain m
+                                       INNER JOIN tblDetails d ON m.mainID = d.mainID
+                                       INNER JOIN products p ON d.productID = p.pID
+                                       WHERE m.mainID = " + printID;
+                printingData = PrintOperations.generateReceipt("Borcelle Restaurant", "₺", printingDatasQry, DataBaseOperations.DataBaseConnection.con);
+                PrintingHeight = (int)(printingData.Split('\n').Length * 17.2);
+                printPreviewDialog.Document = printDocument;
+                printDocument.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Receipt", 400, PrintingHeight);
+                printPreviewDialog.ShowDialog();
+            }
+        }
+
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            if(printID > 0)
+            {
+                e.Graphics.DrawString(printingData, new Font("Consolas", 10), Brushes.Black, new PointF(10, 10));
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -84,6 +110,13 @@ namespace POS_System.Model
                 $"AND date BETWEEN '{fromThisDate.Value.ToString("dd.MM.yyyy")}' AND '{toThisDate.Value.ToString("dd.MM.yyyy")}' " +
                 "ORDER BY mainID DESC";
             LoadData(qry);
+        }
+
+
+
+        private void printPreviewDialog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

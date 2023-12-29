@@ -107,6 +107,7 @@
     <Compile Include="Classes\AddRoundedStyleToForm.cs" />
     <Compile Include="Classes\DataBaseOperations.cs" />
     <Compile Include="Classes\EmailSender.cs" />
+    <Compile Include="Classes\PrintOperations.cs" />
     <Compile Include="frmEnterCode.cs">
       <SubType>Form</SubType>
     </Compile>
