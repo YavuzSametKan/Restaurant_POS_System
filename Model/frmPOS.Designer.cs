@@ -58,9 +58,6 @@
             this.allCategoryBtn = new Guna.UI2.WinForms.Guna2Button();
             this.productPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.myMessageBox = new Guna.UI2.WinForms.Guna2MessageDialog();
-            this.myWarningMessageBox = new Guna.UI2.WinForms.Guna2MessageDialog();
-            this.searchInput = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvProID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,12 +66,17 @@
             this.dgvPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvdelete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.myMessageBox = new Guna.UI2.WinForms.Guna2MessageDialog();
+            this.myWarningMessageBox = new Guna.UI2.WinForms.Guna2MessageDialog();
+            this.searchInput = new Guna.UI2.WinForms.Guna2TextBox();
+            this.editBtn = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.guna2Panel2.SuspendLayout();
             this.categoryPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editBtn)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2Panel1
@@ -616,52 +618,6 @@
             this.guna2DataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.guna2DataGridView1_CellClick);
             this.guna2DataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.guna2DataGridView1_CellFormatting);
             // 
-            // myMessageBox
-            // 
-            this.myMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
-            this.myMessageBox.Caption = "Information";
-            this.myMessageBox.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information;
-            this.myMessageBox.Parent = this;
-            this.myMessageBox.Style = Guna.UI2.WinForms.MessageDialogStyle.Light;
-            this.myMessageBox.Text = null;
-            // 
-            // myWarningMessageBox
-            // 
-            this.myWarningMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
-            this.myWarningMessageBox.Caption = "Warning";
-            this.myWarningMessageBox.Icon = Guna.UI2.WinForms.MessageDialogIcon.Warning;
-            this.myWarningMessageBox.Parent = this;
-            this.myWarningMessageBox.Style = Guna.UI2.WinForms.MessageDialogStyle.Default;
-            this.myWarningMessageBox.Text = null;
-            // 
-            // searchInput
-            // 
-            this.searchInput.BorderColor = System.Drawing.Color.Silver;
-            this.searchInput.BorderRadius = 10;
-            this.searchInput.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.searchInput.DefaultText = "";
-            this.searchInput.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.searchInput.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.searchInput.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.searchInput.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.searchInput.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.searchInput.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.searchInput.ForeColor = System.Drawing.Color.Gray;
-            this.searchInput.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.searchInput.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.searchInput.IconLeftSize = new System.Drawing.Size(15, 15);
-            this.searchInput.IconRight = global::POS_System.Properties.Resources.search_g;
-            this.searchInput.IconRightOffset = new System.Drawing.Point(5, 0);
-            this.searchInput.IconRightSize = new System.Drawing.Size(15, 15);
-            this.searchInput.Location = new System.Drawing.Point(218, 112);
-            this.searchInput.Name = "searchInput";
-            this.searchInput.PasswordChar = '\0';
-            this.searchInput.PlaceholderText = "Search Product...";
-            this.searchInput.SelectedText = "";
-            this.searchInput.Size = new System.Drawing.Size(258, 40);
-            this.searchInput.TabIndex = 7;
-            this.searchInput.TextChanged += new System.EventHandler(this.searchInput_TextChanged);
-            // 
             // dgvSno
             // 
             this.dgvSno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -735,11 +691,75 @@
             this.dgvdelete.ReadOnly = true;
             this.dgvdelete.Width = 30;
             // 
+            // myMessageBox
+            // 
+            this.myMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
+            this.myMessageBox.Caption = "Information";
+            this.myMessageBox.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information;
+            this.myMessageBox.Parent = this;
+            this.myMessageBox.Style = Guna.UI2.WinForms.MessageDialogStyle.Light;
+            this.myMessageBox.Text = null;
+            // 
+            // myWarningMessageBox
+            // 
+            this.myWarningMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
+            this.myWarningMessageBox.Caption = "Warning";
+            this.myWarningMessageBox.Icon = Guna.UI2.WinForms.MessageDialogIcon.Warning;
+            this.myWarningMessageBox.Parent = this;
+            this.myWarningMessageBox.Style = Guna.UI2.WinForms.MessageDialogStyle.Default;
+            this.myWarningMessageBox.Text = null;
+            // 
+            // searchInput
+            // 
+            this.searchInput.BorderColor = System.Drawing.Color.Silver;
+            this.searchInput.BorderRadius = 10;
+            this.searchInput.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.searchInput.DefaultText = "";
+            this.searchInput.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.searchInput.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.searchInput.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchInput.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchInput.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchInput.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.searchInput.ForeColor = System.Drawing.Color.Gray;
+            this.searchInput.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchInput.IconLeftOffset = new System.Drawing.Point(5, 0);
+            this.searchInput.IconLeftSize = new System.Drawing.Size(15, 15);
+            this.searchInput.IconRight = global::POS_System.Properties.Resources.search_g;
+            this.searchInput.IconRightOffset = new System.Drawing.Point(5, 0);
+            this.searchInput.IconRightSize = new System.Drawing.Size(15, 15);
+            this.searchInput.Location = new System.Drawing.Point(218, 107);
+            this.searchInput.Name = "searchInput";
+            this.searchInput.PasswordChar = '\0';
+            this.searchInput.PlaceholderText = "Search Product...";
+            this.searchInput.SelectedText = "";
+            this.searchInput.Size = new System.Drawing.Size(258, 40);
+            this.searchInput.TabIndex = 7;
+            this.searchInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchInput_KeyDown);
+            // 
+            // editBtn
+            // 
+            this.editBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.editBtn.BackColor = System.Drawing.Color.Transparent;
+            this.editBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.editBtn.Image = global::POS_System.Properties.Resources.edit;
+            this.editBtn.ImageRotate = 0F;
+            this.editBtn.Location = new System.Drawing.Point(1222, 107);
+            this.editBtn.Name = "editBtn";
+            this.editBtn.Size = new System.Drawing.Size(40, 40);
+            this.editBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.editBtn.TabIndex = 8;
+            this.editBtn.TabStop = false;
+            this.editBtn.UseTransparentBackground = true;
+            this.editBtn.Visible = false;
+            this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
+            // 
             // frmPOS
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1271, 801);
+            this.Controls.Add(this.editBtn);
             this.Controls.Add(this.searchInput);
             this.Controls.Add(this.guna2DataGridView1);
             this.Controls.Add(this.productPanel);
@@ -762,6 +782,7 @@
             this.guna2Panel2.PerformLayout();
             this.categoryPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editBtn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -804,5 +825,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAmount;
         private System.Windows.Forms.DataGridViewImageColumn dgvdelete;
+        public Guna.UI2.WinForms.Guna2PictureBox editBtn;
     }
 }

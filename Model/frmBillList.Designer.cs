@@ -49,6 +49,7 @@
             this.toThisDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.printButton = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
@@ -286,17 +287,37 @@
             this.printPreviewDialog.Name = "printPreviewDialog";
             this.printPreviewDialog.Text = "Baskı önizleme";
             this.printPreviewDialog.Visible = false;
-            this.printPreviewDialog.Load += new System.EventHandler(this.printPreviewDialog_Load);
             // 
             // printDocument
             // 
             this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
+            // 
+            // printButton
+            // 
+            this.printButton.AutoRoundedCorners = true;
+            this.printButton.BackColor = System.Drawing.Color.Transparent;
+            this.printButton.BorderRadius = 22;
+            this.printButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.printButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.printButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.printButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.printButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
+            this.printButton.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.printButton.ForeColor = System.Drawing.Color.White;
+            this.printButton.Location = new System.Drawing.Point(883, 138);
+            this.printButton.Name = "printButton";
+            this.printButton.Size = new System.Drawing.Size(120, 46);
+            this.printButton.TabIndex = 7;
+            this.printButton.Text = "Print";
+            this.printButton.UseTransparentBackground = true;
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
             // 
             // frmBillList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 754);
+            this.Controls.Add(this.printButton);
             this.Controls.Add(this.toThisDate);
             this.Controls.Add(this.fromThisDate);
             this.Controls.Add(this.guna2DataGridView1);
@@ -304,11 +325,12 @@
             this.Name = "frmBillList";
             this.Text = "frmBillList";
             this.Load += new System.EventHandler(this.frmBillList_Load);
-            this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnClose, 0);
             this.Controls.SetChildIndex(this.guna2DataGridView1, 0);
             this.Controls.SetChildIndex(this.fromThisDate, 0);
             this.Controls.SetChildIndex(this.toThisDate, 0);
+            this.Controls.SetChildIndex(this.printButton, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
@@ -335,5 +357,6 @@
         private System.Windows.Forms.DataGridViewImageColumn dgvPrint;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
         private System.Drawing.Printing.PrintDocument printDocument;
+        private Guna.UI2.WinForms.Guna2Button printButton;
     }
 }

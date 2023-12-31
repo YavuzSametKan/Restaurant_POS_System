@@ -78,11 +78,8 @@ namespace POS_System.Model
         private void btn_Click(object sender, EventArgs e)
         {
             Guna.UI2.WinForms.Guna2Button btn = (Guna.UI2.WinForms.Guna2Button)sender;
-            foreach (var item in productPanel.Controls)
-            {
-                ucProduct product = (ucProduct)item;
-                product.Visible = product.PCategory.ToLower().Contains(btn.Text.Trim().ToLower());
-            }
+            productPanel.Controls.Clear();
+            LoadProducts($"SELECT * FROM products INNER JOIN category ON catID = categoryID WHERE catName = '{btn.Text}'");
         }
 
         private void allCategoryBtn_Click(object sender, EventArgs e)
@@ -102,7 +99,10 @@ namespace POS_System.Model
                 id = Convert.ToInt32(proID)
             };
 
-            productPanel.Controls.Add(w);
+            Invoke((MethodInvoker)delegate
+            {
+                productPanel.Controls.Add(w);
+            });
 
             w.onSelect += (ss, ee) =>
             {
@@ -128,68 +128,101 @@ namespace POS_System.Model
 
         private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (MainID == 0)
+            if (guna2DataGridView1.CurrentCell.OwningColumn.Name == "dgvdelete")
             {
-                if (guna2DataGridView1.CurrentCell.OwningColumn.Name == "dgvdelete")
+                int qty = int.Parse(guna2DataGridView1.CurrentRow.Cells["dgvQty"].Value.ToString());
+                int id = int.Parse(guna2DataGridView1.CurrentRow.Cells["dgvid"].Value.ToString());
+                if (qty > 1)
                 {
-                    int qty = int.Parse(guna2DataGridView1.CurrentRow.Cells["dgvQty"].Value.ToString());
-                    if (qty > 1)
+                    guna2DataGridView1.CurrentRow.Cells["dgvQty"].Value = --qty;
+                    guna2DataGridView1.CurrentRow.Cells["dgvAmount"].Value = qty * double.Parse(guna2DataGridView1.CurrentRow.Cells["dgvPrice"].Value.ToString());
+                    if (editBtn.Visible && id > 0)
+                        detailTableDataOp(id, guna2DataGridView1.CurrentRow);
+                }
+                else
+                {
+                    guna2DataGridView1.Rows.RemoveAt(guna2DataGridView1.CurrentRow.Index);
+                    if (editBtn.Visible && id > 0)
                     {
-                        guna2DataGridView1.CurrentRow.Cells["dgvQty"].Value = --qty;
-                        guna2DataGridView1.CurrentRow.Cells["dgvAmount"].Value = qty * double.Parse(guna2DataGridView1.CurrentRow.Cells["dgvPrice"].Value.ToString());
+                        string qry = $"DELETE FROM tblDetails WHERE detailID = '{id}'";
+                        Hashtable ht = new Hashtable();
+                        DataBaseOperations.CRUDOperations.SQL(qry, ht);
                     }
-                    else
-                    {
-                        guna2DataGridView1.Rows.RemoveAt(guna2DataGridView1.CurrentRow.Index);
-                    }
-                    GetTotal();
+                }
+                GetTotal();
+            }
+        }
+        
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            if (!guna2DataGridView1.Columns["dgvdelete"].Visible)
+            {
+                myMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.YesNo;
+                if (myMessageBox.Show("Are you sure you want to change 'this table is edited' statement?") == DialogResult.Yes)
+                {
+                    guna2DataGridView1.Columns["dgvdelete"].Visible = true;
+                    string qry = "UPDATE tblMain SET isEditted = @isEditted WHERE mainID = @ID";
+                    SQLiteCommand cmd = new SQLiteCommand(qry, DataBaseOperations.DataBaseConnection.con);
+                    cmd.Parameters.AddWithValue("@ID", this.id);
+                    cmd.Parameters.AddWithValue("@isEditted", "Yes");
+                    if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Closed)
+                        DataBaseOperations.DataBaseConnection.con.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Open)
+                        DataBaseOperations.DataBaseConnection.con.Close();
                 }
             }
+            else
+                guna2DataGridView1.Columns["dgvdelete"].Visible = false;
         }
 
         // Getting product from database
-        private void LoadProducts()
+        private void LoadProducts(string qry = "SELECT * FROM products INNER JOIN category ON catID = categoryID")
         {
-            string qry = "Select * FROM products INNER JOIN category ON catID = categoryID ";
-            SQLiteCommand cmd = new SQLiteCommand(qry, DataBaseOperations.DataBaseConnection.con);
-            SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            foreach (DataRow item in dt.Rows)
+            frmLoading loading = null;
+            Thread t = new Thread(() =>
             {
-                Byte[] imageArray = (byte[])item["pImage"];
+                loading = new frmLoading();
+                AddBlurToForm.BlurBackground(loading);
+            });
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+            Thread thread = new Thread(() =>
+            {
+                try
+                {
+                    SQLiteCommand cmd = new SQLiteCommand(qry, DataBaseOperations.DataBaseConnection.con);
+                    SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                AddItems("0",item["pID"].ToString(), item["pName"].ToString(), item["catName"].ToString(), item["pPrice"].ToString(), Image.FromStream(new MemoryStream(imageArray)));
-            }
+                    foreach (DataRow item in dt.Rows)
+                    {
+                        Byte[] imageArray = (byte[])item["pImage"];
+                        AddItems("0", item["pID"].ToString(), item["pName"].ToString(), item["catName"].ToString(), item["pPrice"].ToString(), Image.FromStream(new MemoryStream(imageArray)));
+                        loading.progressBar.Value += 100/dt.Rows.Count;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+                finally
+                {
+                    loading.Close();
+                }
+            });
+            thread.Start();
         }
 
-        /*private void searchBtn_Click(object sender, EventArgs e)
+        private void searchInput_KeyDown(object sender, KeyEventArgs e)
         {
-            frmLoading loading = new frmLoading();
-            loading.Show();
-
-            Thread backgroundThread = new Thread(() =>
+            if (e.KeyCode == Keys.Enter)
             {
-                foreach (var item in productPanel.Controls)
-                {
-                    var product = (ucProduct)item;
-                    product.Visible = product.PName.ToLower().Contains(searchInput.Text.Trim().ToLower());
-                }
-
-                loading.Invoke((MethodInvoker)delegate { loading.Close(); });
-            });
-
-            backgroundThread.IsBackground = true;
-            backgroundThread.Start();
-        }*/
-
-        private void searchInput_TextChanged(object sender, EventArgs e)
-        {
-            foreach (var item in productPanel.Controls)
-            {
-                var product = (ucProduct)item;
-                product.Visible = product.PName.ToLower().Contains(searchInput.Text.Trim().ToLower());
+                productPanel.Controls.Clear();
+                LoadProducts($"SELECT * FROM products INNER JOIN category ON catID = categoryID WHERE LOWER(pName) LIKE '%{searchInput.Text.Trim().ToLower()}%'");
             }
         }
 
@@ -218,6 +251,7 @@ namespace POS_System.Model
         {
             // Reset to the POS screen
             guna2DataGridView1.Columns["dgvdelete"].Visible = true;
+            editBtn.Visible = false;
             tableLabel.Text = "";
             waiterLabel.Text = "";
             driverLabel.Text = "";
@@ -333,6 +367,8 @@ namespace POS_System.Model
                 label3.Visible = false;
                 label4.Visible = false;
                 OrderType = "Delivery";
+                label6.Visible = true;
+                driverLabel.Visible = true;
 
                 frmAddCustomer frm = new frmAddCustomer();
                 frm.MainID = MainID;
@@ -475,86 +511,94 @@ namespace POS_System.Model
                 dineInBtn.Checked = false;
             }
         }
+        private void mainTalbeDataOP(string status)
+        {
+            string qry = "";
+            if (MainID == 0) // Insert
+            {
+                qry = @"INSERT INTO tblMain (date, time, tableName, waiterName, status, orderType, paymentMethod, total, received, change, driverID, customerName, customerPhone, customerAdress) 
+                            VALUES (@date, @time, @tableName, @waiterName, @status, @orderType, @paymentMethod, @total, @received, @change, @driverID, @customerName, @customerPhone, @customerAdress); 
+                            SELECT last_insert_rowid()";
+                // this line will get recent add id value -> "SELECT last_insert_rowid()"
+            }
+            else // Update
+            {
+                qry = "UPDATE tblMain SET status = @status, total = @total, received = @received, change = @change, driverID = @driverID, customerName = @customerName, customerPhone = @customerPhone, customerAdress = @customerAdress WHERE mainID = @ID";
+            }
 
+            SQLiteCommand cmd = new SQLiteCommand(qry, DataBaseOperations.DataBaseConnection.con);
+            cmd.Parameters.AddWithValue("@ID", MainID);
+            cmd.Parameters.AddWithValue("@date", DateTime.Now.Date.ToString("dd.MM.yyyy"));
+            cmd.Parameters.AddWithValue("@time", DateTime.Now.ToShortTimeString());
+            cmd.Parameters.AddWithValue("@tableName", tableLabel.Text);
+            cmd.Parameters.AddWithValue("@waiterName", waiterLabel.Text);
+            cmd.Parameters.AddWithValue("@status", status);
+            cmd.Parameters.AddWithValue("@orderType", OrderType);
+            cmd.Parameters.AddWithValue("@total", Convert.ToDouble(totalLabel.Text));
+            cmd.Parameters.AddWithValue("@driverID", driverID);
+            cmd.Parameters.AddWithValue("@customerName", customerName);
+            cmd.Parameters.AddWithValue("@customerPhone", customerPhone);
+            cmd.Parameters.AddWithValue("@customerAdress", customerAdress);
+            cmd.Parameters.AddWithValue("@received", Convert.ToDouble(0)); // as we only saving data for kitchen value will update when payment received
+            cmd.Parameters.AddWithValue("@change", Convert.ToDouble(0));
+            cmd.Parameters.AddWithValue("@paymentMethod", "didn't paid");
+
+            if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Closed)
+                DataBaseOperations.DataBaseConnection.con.Open();
+
+            if (MainID == 0) MainID = Convert.ToInt32(cmd.ExecuteScalar());
+            else cmd.ExecuteNonQuery();
+
+            if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Open)
+                DataBaseOperations.DataBaseConnection.con.Close();
+        }
+
+        private void detailTableDataOp(int detailID, DataGridViewRow row)
+        {
+            string qry = "";
+            detailID = Convert.ToInt32(row.Cells["dgvid"].Value);
+
+            if (detailID == 0) // Insert
+            {
+                qry = @"INSERT INTO tblDetails (mainID, productID, qty, price, amount) 
+                            VALUES (@mainID, @productID, @qty, @price, @amount)";
+            }
+            else // Update
+            {
+                qry = @"UPDATE tblDetails SET productID = @productID, qty = @qty, price = @price, amount = @amount WHERE detailID = @ID";
+            }
+
+            SQLiteCommand cmd2 = new SQLiteCommand(qry, DataBaseOperations.DataBaseConnection.con);
+            cmd2.Parameters.AddWithValue("@ID", detailID);
+            cmd2.Parameters.AddWithValue("@mainID", MainID);
+            cmd2.Parameters.AddWithValue("@productID", Convert.ToInt32(row.Cells["dgvProID"].Value));
+            cmd2.Parameters.AddWithValue("@qty", Convert.ToInt32(row.Cells["dgvQty"].Value));
+            cmd2.Parameters.AddWithValue("@price", Convert.ToDouble(row.Cells["dgvPrice"].Value));
+            cmd2.Parameters.AddWithValue("@amount", Convert.ToDouble(row.Cells["dgvAmount"].Value));
+
+            if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Closed)
+                DataBaseOperations.DataBaseConnection.con.Open();
+
+            cmd2.ExecuteNonQuery();
+
+            if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Open)
+                DataBaseOperations.DataBaseConnection.con.Close();
+        }
         private void KOTBtn_Click(object sender, EventArgs e)
         {
             if (OrderType != "")
             {
                 // Save the datas in database
 
-                string qry1 = ""; // Main Table
-                string qry2 = ""; // Detail Table
-
                 int detailID = 0;
 
-                if (MainID == 0) // Insert
-                {
-                    qry1 = @"INSERT INTO tblMain (date, time, tableName, waiterName, status, orderType, paymentMethod, total, received, change, driverID, customerName, customerPhone, customerAdress) 
-                            VALUES (@date, @time, @tableName, @waiterName, @status, @orderType, @paymentMethod, @total, @received, @change, @driverID, @customerName, @customerPhone, @customerAdress); 
-                            SELECT last_insert_rowid()";
-                    // this line will get recent add id value -> "SELECT last_insert_rowid()"
-                }
-                else // Update
-                {
-                    qry1 = "UPDATE tblMain SET status = @status, total = @total, received = @received, change = @change WHERE mainID = @ID";
-                }
+                // for main table
+                mainTalbeDataOP("Pending");
 
-                SQLiteCommand cmd = new SQLiteCommand(qry1, DataBaseOperations.DataBaseConnection.con);
-                cmd.Parameters.AddWithValue("@ID", MainID);
-                cmd.Parameters.AddWithValue("@date", DateTime.Now.Date.ToString("dd.MM.yyyy"));
-                cmd.Parameters.AddWithValue("@time", DateTime.Now.ToShortTimeString());
-                cmd.Parameters.AddWithValue("@tableName", tableLabel.Text);
-                cmd.Parameters.AddWithValue("@waiterName", waiterLabel.Text);
-                cmd.Parameters.AddWithValue("@status", "Pending");
-                cmd.Parameters.AddWithValue("@orderType", OrderType);
-                cmd.Parameters.AddWithValue("@total", Convert.ToDouble(totalLabel.Text));
-                cmd.Parameters.AddWithValue("@driverID", driverID);
-                cmd.Parameters.AddWithValue("@customerName", customerName);
-                cmd.Parameters.AddWithValue("@customerPhone", customerPhone);
-                cmd.Parameters.AddWithValue("@customerAdress", customerAdress);
-                cmd.Parameters.AddWithValue("@received", Convert.ToDouble(0)); // as we only saving data for kitchen value will update when payment received
-                cmd.Parameters.AddWithValue("@change", Convert.ToDouble(0));
-                cmd.Parameters.AddWithValue("@paymentMethod", "didn't paid");
-
-                if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Closed)
-                    DataBaseOperations.DataBaseConnection.con.Open();
-
-                if (MainID == 0) MainID = Convert.ToInt32(cmd.ExecuteScalar());
-                else cmd.ExecuteNonQuery();
-
-                if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Open)
-                    DataBaseOperations.DataBaseConnection.con.Close();
-
+                // for detail table
                 foreach (DataGridViewRow row in guna2DataGridView1.Rows)
-                {
-                    detailID = Convert.ToInt32(row.Cells["dgvid"].Value);
+                detailTableDataOp(detailID, row);
 
-                    if (detailID == 0) // Insert
-                    {
-                        qry2 = @"INSERT INTO tblDetails (mainID, productID, qty, price, amount) 
-                                VALUES (@mainID, @productID, @qty, @price, @amount)";
-                    }
-                    else // Update
-                    {
-                        qry2 = @"UPDATE tblDetails SET productID = @productID, qty = @qty, price = @price, amount = @amount WHERE detailID = @ID";
-                    }
-
-                    SQLiteCommand cmd2 = new SQLiteCommand(qry2, DataBaseOperations.DataBaseConnection.con);
-                    cmd2.Parameters.AddWithValue("@ID", detailID);
-                    cmd2.Parameters.AddWithValue("@mainID", MainID);
-                    cmd2.Parameters.AddWithValue("@productID", Convert.ToInt32(row.Cells["dgvProID"].Value));
-                    cmd2.Parameters.AddWithValue("@qty", Convert.ToInt32(row.Cells["dgvQty"].Value));
-                    cmd2.Parameters.AddWithValue("@price", Convert.ToDouble(row.Cells["dgvPrice"].Value));
-                    cmd2.Parameters.AddWithValue("@amount", Convert.ToDouble(row.Cells["dgvAmount"].Value));
-
-                    if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Closed)
-                        DataBaseOperations.DataBaseConnection.con.Open();
-
-                    cmd2.ExecuteNonQuery();
-
-                    if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Open)
-                        DataBaseOperations.DataBaseConnection.con.Close();
-                }
                 // Reset to the POS screen
                 myMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
                 myMessageBox.Show("Saved Successfully");
@@ -591,6 +635,7 @@ namespace POS_System.Model
                 id = frm.MainID;
                 MainID = frm.MainID;
                 guna2DataGridView1.Columns["dgvdelete"].Visible = false;
+                editBtn.Visible = true;
                 LoadEntries();
             }
             
@@ -736,79 +781,15 @@ namespace POS_System.Model
             {
                 // Save the datas in database
 
-                string qry1 = ""; // Main Table
-                string qry2 = ""; // Detail Table
-
                 int detailID = 0;
 
-                if (MainID == 0) // Insert
-                {
-                    qry1 = @"INSERT INTO tblMain (date, time, tableName, waiterName, status, orderType, paymentMethod, total, received, change, driverID, customerName, customerPhone, customerAdress) 
-                            VALUES (@date, @time, @tableName, @waiterName, @status, @orderType, @paymentMethod, @total, @received, @change, @driverID, @customerName, @customerPhone, @customerAdress); 
-                            SELECT last_insert_rowid()";
-                    // this line will get recent add id value -> "SELECT last_insert_rowid()"
-                }
-                else // Update
-                {
-                    qry1 = "UPDATE tblMain SET status = @status, total = @total, received = @received, change = @change, driverID = @driverID, customerName = @customerName, customerPhone = @customerPhone, customerAdress = @customerAdress WHERE mainID = @ID";
-                }
+                // for mainTable
+                mainTalbeDataOP("Hold");
 
-                SQLiteCommand cmd = new SQLiteCommand(qry1, DataBaseOperations.DataBaseConnection.con);
-                cmd.Parameters.AddWithValue("@ID", MainID);
-                cmd.Parameters.AddWithValue("@date", DateTime.Now.Date.ToString("dd.MM.yyyy"));
-                cmd.Parameters.AddWithValue("@time", DateTime.Now.ToShortTimeString());
-                cmd.Parameters.AddWithValue("@tableName", tableLabel.Text);
-                cmd.Parameters.AddWithValue("@waiterName", waiterLabel.Text);
-                cmd.Parameters.AddWithValue("@status", "Hold");
-                cmd.Parameters.AddWithValue("@orderType", OrderType);
-                cmd.Parameters.AddWithValue("@total", Convert.ToDouble(totalLabel.Text));
-                cmd.Parameters.AddWithValue("@driverID", driverID);
-                cmd.Parameters.AddWithValue("@customerName", customerName);
-                cmd.Parameters.AddWithValue("@customerPhone", customerPhone);
-                cmd.Parameters.AddWithValue("@customerAdress", customerAdress);
-                cmd.Parameters.AddWithValue("@received", Convert.ToDouble(0)); // as we only saving data for kitchen value will update when payment received
-                cmd.Parameters.AddWithValue("@change", Convert.ToDouble(0));
-                cmd.Parameters.AddWithValue("@paymentMethod", "didn't paid");
-
-                if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Closed)
-                    DataBaseOperations.DataBaseConnection.con.Open();
-
-                if (MainID == 0) MainID = Convert.ToInt32(cmd.ExecuteScalar());
-                else cmd.ExecuteNonQuery();
-
-                if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Open)
-                    DataBaseOperations.DataBaseConnection.con.Close();
-
+                // for detailTable
                 foreach (DataGridViewRow row in guna2DataGridView1.Rows)
-                {
-                    detailID = Convert.ToInt32(row.Cells["dgvid"].Value);
+                    detailTableDataOp(detailID, row);
 
-                    if (detailID == 0) // Insert
-                    {
-                        qry2 = @"INSERT INTO tblDetails (mainID, productID, qty, price, amount) 
-                                VALUES (@mainID, @productID, @qty, @price, @amount)";
-                    }
-                    else // Update
-                    {
-                        qry2 = @"UPDATE tblDetails SET productID = @productID, qty = @qty, price = @price, amount = @amount WHERE detailID = @ID";
-                    }
-
-                    SQLiteCommand cmd2 = new SQLiteCommand(qry2, DataBaseOperations.DataBaseConnection.con);
-                    cmd2.Parameters.AddWithValue("@ID", detailID);
-                    cmd2.Parameters.AddWithValue("@mainID", MainID);
-                    cmd2.Parameters.AddWithValue("@productID", Convert.ToInt32(row.Cells["dgvProID"].Value));
-                    cmd2.Parameters.AddWithValue("@qty", Convert.ToInt32(row.Cells["dgvQty"].Value));
-                    cmd2.Parameters.AddWithValue("@price", Convert.ToDouble(row.Cells["dgvPrice"].Value));
-                    cmd2.Parameters.AddWithValue("@amount", Convert.ToDouble(row.Cells["dgvAmount"].Value));
-
-                    if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Closed)
-                        DataBaseOperations.DataBaseConnection.con.Open();
-
-                    cmd2.ExecuteNonQuery();
-
-                    if (DataBaseOperations.DataBaseConnection.con.State == ConnectionState.Open)
-                        DataBaseOperations.DataBaseConnection.con.Close();
-                }
                 // Reset to the POS screen
                 myMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
                 myMessageBox.Show("Saved Successfully");

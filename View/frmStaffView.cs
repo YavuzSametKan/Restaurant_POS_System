@@ -43,9 +43,6 @@ namespace POS_System.View
         {
             AddBlurToForm.BlurBackground(new frmStaffAdd());
 
-            //frmCategoryAdd frm = new frmCategoryAdd();
-            //frm.ShowDialog();
-
             GetData();
         }
 

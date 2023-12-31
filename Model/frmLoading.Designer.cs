@@ -28,20 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 93);
-            this.panel1.TabIndex = 0;
             // 
             // label1
             // 
@@ -51,29 +42,53 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(300, 93);
+            this.label1.Size = new System.Drawing.Size(300, 50);
             this.label1.TabIndex = 0;
             this.label1.Text = "Loading...";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(41, 122);
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.AutoRoundedCorners = true;
+            this.progressBar.BackColor = System.Drawing.Color.Transparent;
+            this.progressBar.BorderColor = System.Drawing.Color.Transparent;
+            this.progressBar.BorderRadius = 11;
+            this.progressBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.progressBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.progressBar.Location = new System.Drawing.Point(32, 75);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(219, 23);
-            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar.TabIndex = 1;
+            this.progressBar.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
+            this.progressBar.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
+            this.progressBar.Size = new System.Drawing.Size(234, 25);
+            this.progressBar.TabIndex = 2;
+            this.progressBar.Text = "guna2ProgressBar1";
+            this.progressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.progressBar.UseTransparentBackground = true;
+            this.progressBar.UseWaitCursor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(300, 50);
+            this.panel1.TabIndex = 0;
             // 
             // frmLoading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(300, 175);
+            this.ClientSize = new System.Drawing.Size(300, 125);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLoading";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLoading";
             this.panel1.ResumeLayout(false);
@@ -82,9 +97,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.ProgressBar progressBar;
+        public Guna.UI2.WinForms.Guna2ProgressBar progressBar;
+        private System.Windows.Forms.Panel panel1;
     }
 }

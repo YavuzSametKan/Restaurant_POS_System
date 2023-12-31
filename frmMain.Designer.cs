@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.userLabel = new System.Windows.Forms.Label();
             this.CenterPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.ordersBtn = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -54,6 +55,7 @@
             this.guna2Panel1.BorderRadius = 20;
             this.guna2Panel1.Controls.Add(this.cloaseBtn);
             this.guna2Panel1.Controls.Add(this.settingsBtn);
+            this.guna2Panel1.Controls.Add(this.ordersBtn);
             this.guna2Panel1.Controls.Add(this.kitchenBtn);
             this.guna2Panel1.Controls.Add(this.POSBtn);
             this.guna2Panel1.Controls.Add(this.staffBtn);
@@ -119,11 +121,11 @@
             this.settingsBtn.Image = global::POS_System.Properties.Resources.settings_w;
             this.settingsBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.settingsBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.settingsBtn.Location = new System.Drawing.Point(38, 617);
+            this.settingsBtn.Location = new System.Drawing.Point(38, 489);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(210, 58);
             this.settingsBtn.TabIndex = 1;
-            this.settingsBtn.Text = "Settings";
+            this.settingsBtn.Text = "Users";
             this.settingsBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.settingsBtn.TextOffset = new System.Drawing.Point(20, 0);
             this.settingsBtn.UseTransparentBackground = true;
@@ -151,7 +153,7 @@
             this.kitchenBtn.Image = global::POS_System.Properties.Resources.kitchen_w;
             this.kitchenBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.kitchenBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.kitchenBtn.Location = new System.Drawing.Point(38, 553);
+            this.kitchenBtn.Location = new System.Drawing.Point(38, 681);
             this.kitchenBtn.Name = "kitchenBtn";
             this.kitchenBtn.Size = new System.Drawing.Size(210, 58);
             this.kitchenBtn.TabIndex = 1;
@@ -184,7 +186,7 @@
             this.POSBtn.Image = global::POS_System.Properties.Resources.POS_w;
             this.POSBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.POSBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.POSBtn.Location = new System.Drawing.Point(38, 489);
+            this.POSBtn.Location = new System.Drawing.Point(38, 617);
             this.POSBtn.Name = "POSBtn";
             this.POSBtn.Size = new System.Drawing.Size(210, 58);
             this.POSBtn.TabIndex = 1;
@@ -424,6 +426,39 @@
             this.CenterPanel.Size = new System.Drawing.Size(1068, 818);
             this.CenterPanel.TabIndex = 0;
             // 
+            // ordersBtn
+            // 
+            this.ordersBtn.AutoRoundedCorners = true;
+            this.ordersBtn.BackColor = System.Drawing.Color.Transparent;
+            this.ordersBtn.BorderColor = System.Drawing.Color.White;
+            this.ordersBtn.BorderRadius = 28;
+            this.ordersBtn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.ordersBtn.CheckedState.FillColor = System.Drawing.Color.White;
+            this.ordersBtn.CheckedState.ForeColor = System.Drawing.Color.Black;
+            this.ordersBtn.CheckedState.Image = global::POS_System.Properties.Resources.kitchen_b;
+            this.ordersBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ordersBtn.CustomizableEdges.BottomRight = false;
+            this.ordersBtn.CustomizableEdges.TopRight = false;
+            this.ordersBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.ordersBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.ordersBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.ordersBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.ordersBtn.FillColor = System.Drawing.Color.Transparent;
+            this.ordersBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.ordersBtn.ForeColor = System.Drawing.Color.White;
+            this.ordersBtn.Image = global::POS_System.Properties.Resources.bills_w;
+            this.ordersBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.ordersBtn.ImageOffset = new System.Drawing.Point(10, 0);
+            this.ordersBtn.Location = new System.Drawing.Point(38, 553);
+            this.ordersBtn.Name = "ordersBtn";
+            this.ordersBtn.Size = new System.Drawing.Size(210, 58);
+            this.ordersBtn.TabIndex = 1;
+            this.ordersBtn.Text = "Orders";
+            this.ordersBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.ordersBtn.TextOffset = new System.Drawing.Point(20, 0);
+            this.ordersBtn.UseTransparentBackground = true;
+            this.ordersBtn.Click += new System.EventHandler(this.ordersBtn_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
@@ -467,5 +502,6 @@
         private System.Windows.Forms.Label userLabel;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Button cloaseBtn;
+        private Guna.UI2.WinForms.Guna2Button ordersBtn;
     }
 }

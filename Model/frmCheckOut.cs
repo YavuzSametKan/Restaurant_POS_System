@@ -78,6 +78,9 @@ namespace POS_System.Model
                         myMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
                         myMessageBox.Show("Saved Successfully");
                         this.Close();
+                        frmPOS frmPOSInstance = Application.OpenForms["frmPOS"] as frmPOS;
+                        if (frmPOSInstance != null)
+                            frmPOSInstance.editBtn.Visible = false;
                     }
                 }
                 else

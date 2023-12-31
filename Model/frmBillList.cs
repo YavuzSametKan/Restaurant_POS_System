@@ -29,6 +29,8 @@ namespace POS_System.Model
         private void frmBillList_Load(object sender, EventArgs e)
         {
             string qry = $"SELECT mainID,tableName,waiterName,orderType,status,total,date,time FROM tblMain WHERE status <> 'Pending' AND date = '{DateTime.Now.Date.ToString("dd.MM.yyyy")}' ORDER BY mainID DESC";
+            toThisDate.Value = DateTime.Now.Date;
+            fromThisDate.Value = DateTime.Now.Date;
             LoadData(qry);
         }
 
@@ -51,9 +53,9 @@ namespace POS_System.Model
             foreach (DataGridViewRow row in guna2DataGridView1.Rows)
             { // if status value is paid edit btn is unvisible
                 if (row.Cells["dgvStatus"].Value?.ToString() == "Paid")
-                {
                     row.Cells["dgvedit"].Value = new System.Drawing.Bitmap(1, 1);
-                }
+                else
+                    row.Cells["dgvPrint"].Value = new System.Drawing.Bitmap(1, 1);
             }
         }
 
@@ -83,10 +85,7 @@ namespace POS_System.Model
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            if(printID > 0)
-            {
-                e.Graphics.DrawString(printingData, new Font("Consolas", 10), Brushes.Black, new PointF(10, 10));
-            }
+            e.Graphics.DrawString(printingData, new Font("Consolas", 10), Brushes.Black, new PointF(10, 10));
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -112,11 +111,20 @@ namespace POS_System.Model
             LoadData(qry);
         }
 
-
-
-        private void printPreviewDialog_Load(object sender, EventArgs e)
+        private void printButton_Click(object sender, EventArgs e)
         {
-
+            string printingDatasQry = @"SELECT m.mainID 'Order', orderType, paymentMethod, pName, qty, price, amount, received, change, total, date, time FROM tblMain m
+                                      INNER JOIN tblDetails d ON m.mainID = d.mainID
+                                      INNER JOIN products p ON d.productID = p.pID
+                                      WHERE status = 'Paid'
+                                      AND date BETWEEN '"+fromThisDate.Value.ToString("dd.MM.yyyy")+"' AND '"+toThisDate.Value.ToString("dd.MM.yyyy")+@"' 
+                                      ORDER BY m.mainID DESC";
+            string[] headers = { "Order", "Ordr Typ", "Pymnt Mthd", "Product", "Qty", "Price", "Amount", "Received", "Change", "Total", "Date", "Time" };
+            printingData = PrintOperations.PrintSaledProduct(156, headers, fromThisDate.Value.ToString("dd.MM.yyyy"), toThisDate.Value.ToString("dd.MM.yyyy"), "₺", printingDatasQry, DataBaseOperations.DataBaseConnection.con);
+            PrintingHeight = (int)(printingData.Split('\n').Length * 17.2);
+            printPreviewDialog.Document = printDocument;
+            printDocument.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Orders", 1350, PrintingHeight);
+            printPreviewDialog.ShowDialog();
         }
     }
 }

@@ -26,10 +26,7 @@ namespace POS_System.Model
         private void frmAddCustomer_Load(object sender, EventArgs e)
         {
             //string qry = "SELECT staffID 'id', sName 'name' FROM staff WHERE sRole = 'Driver'";
-            string qry = @"SELECT s.staffID AS id, s.sName AS name
-                          FROM staff s
-                          INNER JOIN tblMain t ON s.staffID<> t.driverID
-                          WHERE s.sRole = 'Driver' AND t.status <> 'Paid' AND t.driverID <> '0'";
+            string qry = "SELECT staffID 'id', sName 'name' FROM staff WHERE sRole = 'Driver'";
             DataBaseOperations.CRUDOperations.CBFill(qry, driverComboBox);
 
             //if (MainID > 0)

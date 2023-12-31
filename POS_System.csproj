@@ -254,6 +254,12 @@
     <Compile Include="View\frmTableView.Designer.cs">
       <DependentUpon>frmTableView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\frmOrdersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmOrdersView.Designer.cs">
+      <DependentUpon>frmOrdersView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmEnterCode.resx">
       <DependentUpon>frmEnterCode.cs</DependentUpon>
     </EmbeddedResource>
@@ -330,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmTableView.resx">
       <DependentUpon>frmTableView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmOrdersView.resx">
+      <DependentUpon>frmOrdersView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="POS_System_TemporaryKey.pfx" />

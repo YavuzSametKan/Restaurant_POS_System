@@ -93,5 +93,10 @@ namespace POS_System
         {
             AddControls(new frmKitchenView());
         }
+
+        private void ordersBtn_Click(object sender, EventArgs e)
+        {
+            AddControls(new frmOrdersView());
+        }
     }
 }
