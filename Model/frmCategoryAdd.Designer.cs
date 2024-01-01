@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.nameInput = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -41,7 +42,6 @@
             // saveBtn
             // 
             this.saveBtn.FlatAppearance.BorderSize = 0;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // pictureBox1
             // 
@@ -50,6 +50,11 @@
             // closeBtn
             // 
             this.closeBtn.FlatAppearance.BorderSize = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(0, 288);
+            this.panel1.Size = new System.Drawing.Size(447, 85);
             // 
             // label1
             // 
@@ -88,7 +93,11 @@
             this.Controls.Add(this.label1);
             this.Name = "frmCategoryAdd";
             this.Text = "frmCategoryAdd";
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.nameInput, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

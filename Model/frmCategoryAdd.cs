@@ -48,10 +48,5 @@ namespace POS_System.Model
                 myMessageBox.Show("Please fill the all inputs.");
 
         }
-
-        private void saveBtn_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

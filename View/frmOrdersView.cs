@@ -32,7 +32,7 @@ namespace POS_System.View
                       INNER JOIN tblDetails d ON m.mainID = d.mainID 
                       LEFT JOIN staff s ON m.driverID = s.staffID 
                       INNER JOIN products p ON d.productID = p.pID " +
-                      $"WHERE (date BETWEEN '{fromThisDate.Value.ToString("dd.MM.yyyy")}' AND '{toThisDate.Value.ToString("dd.MM.yyyy")}') " +
+                      $"WHERE (substr(date, 7, 4) || '-' || substr(date, 4, 2) || '-' || substr(date, 1, 2) BETWEEN '{fromThisDate.Value.ToString("yyyy-MM-dd")}' AND '{toThisDate.Value.ToString("yyyy-MM-dd")}') " +
                       $"AND (pName LIKE '%{searchInput.Text}%' " +
                       $"OR waiterName LIKE '%{searchInput.Text}%' " +
                       $"OR sName LIKE '%{searchInput.Text}%' " +
@@ -86,7 +86,7 @@ namespace POS_System.View
             string printingDatasQry = @"SELECT m.mainID 'Order', orderType, paymentMethod, pName, qty, price, amount, received, change, total, date, time FROM tblMain m
                                       INNER JOIN tblDetails d ON m.mainID = d.mainID
                                       INNER JOIN products p ON d.productID = p.pID
-                                      WHERE date BETWEEN '" + fromThisDate.Value.ToString("dd.MM.yyyy") + "' AND '" + toThisDate.Value.ToString("dd.MM.yyyy") + @"' 
+                                      WHERE substr(date, 7, 4) || '-' || substr(date, 4, 2) || '-' || substr(date, 1, 2) BETWEEN '" + fromThisDate.Value.ToString("yyyy-MM-dd") + "' AND '" + toThisDate.Value.ToString("yyyy-MM-dd") + @"' 
                                       ORDER BY m.mainID DESC";
             string[] headers = { "Order", "Ordr Typ", "Pymnt Mthd", "Product", "Qty", "Price", "Amount", "Received", "Change", "Total", "Date", "Time" };
             printingData = PrintOperations.PrintSaledProduct(156, headers, fromThisDate.Value.ToString("dd.MM.yyyy"), toThisDate.Value.ToString("dd.MM.yyyy"), "₺", printingDatasQry, DataBaseOperations.DataBaseConnection.con);

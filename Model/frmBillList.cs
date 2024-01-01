@@ -97,8 +97,7 @@ namespace POS_System.Model
         {
             string qry = "SELECT mainID,tableName,waiterName,orderType,status,total,date,time FROM tblMain " +
                 "WHERE status <> 'Pending' " +
-                $"AND date BETWEEN '{fromThisDate.Value.ToString("dd.MM.yyyy")}' AND '{toThisDate.Value.ToString("dd.MM.yyyy")}' " +
-                "ORDER BY mainID DESC";
+                $"AND substr(date, 7, 4) || '-' || substr(date, 4, 2) || '-' || substr(date, 1, 2) BETWEEN '{fromThisDate.Value.ToString("yyyy-MM-dd")}' AND '{toThisDate.Value.ToString("yyyy-MM-dd")}' " + "ORDER BY mainID DESC";
             LoadData(qry);
         }
 
@@ -106,7 +105,7 @@ namespace POS_System.Model
         {
             string qry = "SELECT mainID,tableName,waiterName,orderType,status,total,date,time FROM tblMain " +
                 "WHERE status <> 'Pending' " +
-                $"AND date BETWEEN '{fromThisDate.Value.ToString("dd.MM.yyyy")}' AND '{toThisDate.Value.ToString("dd.MM.yyyy")}' " +
+                $"AND substr(date, 7, 4) || '-' || substr(date, 4, 2) || '-' || substr(date, 1, 2) BETWEEN '{fromThisDate.Value.ToString("yyyy-MM-dd")}' AND '{toThisDate.Value.ToString("yyyy-MM-dd")}' " +
                 "ORDER BY mainID DESC";
             LoadData(qry);
         }
@@ -117,7 +116,7 @@ namespace POS_System.Model
                                       INNER JOIN tblDetails d ON m.mainID = d.mainID
                                       INNER JOIN products p ON d.productID = p.pID
                                       WHERE status = 'Paid'
-                                      AND date BETWEEN '"+fromThisDate.Value.ToString("dd.MM.yyyy")+"' AND '"+toThisDate.Value.ToString("dd.MM.yyyy")+@"' 
+                                      AND substr(date, 7, 4) || '-' || substr(date, 4, 2) || '-' || substr(date, 1, 2) BETWEEN '" + fromThisDate.Value.ToString("dd.MM.yyyy")+"' AND '"+toThisDate.Value.ToString("dd.MM.yyyy")+@"' 
                                       ORDER BY m.mainID DESC";
             string[] headers = { "Order", "Ordr Typ", "Pymnt Mthd", "Product", "Qty", "Price", "Amount", "Received", "Change", "Total", "Date", "Time" };
             printingData = PrintOperations.PrintSaledProduct(156, headers, fromThisDate.Value.ToString("dd.MM.yyyy"), toThisDate.Value.ToString("dd.MM.yyyy"), "₺", printingDatasQry, DataBaseOperations.DataBaseConnection.con);

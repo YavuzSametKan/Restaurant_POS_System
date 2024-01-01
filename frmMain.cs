@@ -98,5 +98,10 @@ namespace POS_System
         {
             AddControls(new frmOrdersView());
         }
+
+        private void usersBtn_Click(object sender, EventArgs e)
+        {
+            AddControls(new frmUsersView());
+        }
     }
 }

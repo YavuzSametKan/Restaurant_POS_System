@@ -132,7 +132,14 @@ namespace POS_System.Classes
                 return GeneralValidationDatas(qry, con);
             }
 
-            private static bool IsValidAnEmail(string email)
+            public static bool IsValidUserName(string username)
+            {
+                var con = DataBaseConnection.con;
+                string qry = $"SELECT * FROM users WHERE userName = '{username}'";
+                return GeneralValidationDatas(qry, con);
+            }
+
+            public static bool IsValidAnEmail(string email)
             {
                 var trimmedEmail = email.Trim();
 

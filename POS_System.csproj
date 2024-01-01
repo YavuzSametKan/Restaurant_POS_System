@@ -198,6 +198,24 @@
     <Compile Include="Model\frmTableSelect.Designer.cs">
       <DependentUpon>frmTableSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\frmUserAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\frmUserAdd.Designer.cs">
+      <DependentUpon>frmUserAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\frmUsersConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\frmUsersConfirm.Designer.cs">
+      <DependentUpon>frmUsersConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\frmVisibleToPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\frmVisibleToPassword.Designer.cs">
+      <DependentUpon>frmVisibleToPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\frmWaiterSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +278,12 @@
     <Compile Include="View\frmOrdersView.Designer.cs">
       <DependentUpon>frmOrdersView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\frmUsersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmUsersView.Designer.cs">
+      <DependentUpon>frmUsersView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmEnterCode.resx">
       <DependentUpon>frmEnterCode.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,6 +329,15 @@
     <EmbeddedResource Include="Model\frmTableSelect.resx">
       <DependentUpon>frmTableSelect.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Model\frmUserAdd.resx">
+      <DependentUpon>frmUserAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\frmUsersConfirm.resx">
+      <DependentUpon>frmUsersConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\frmVisibleToPassword.resx">
+      <DependentUpon>frmVisibleToPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Model\frmWaiterSelect.resx">
       <DependentUpon>frmWaiterSelect.cs</DependentUpon>
     </EmbeddedResource>
@@ -339,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmOrdersView.resx">
       <DependentUpon>frmOrdersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmUsersView.resx">
+      <DependentUpon>frmUsersView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="POS_System_TemporaryKey.pfx" />
@@ -500,6 +536,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
