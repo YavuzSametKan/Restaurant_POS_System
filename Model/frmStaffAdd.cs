@@ -26,6 +26,12 @@ namespace POS_System.Model
         {
             if (nameInput.Text.Trim() != "" && phoneInput.Text.Trim() != "" && roleComboBox.Text != "")
             {
+                if(!(phoneInput.Text.All(char.IsDigit) && (phoneInput.Text.Length >= 7 && phoneInput.Text.Length <= 15)))
+                {
+                    myMessageBox.Show("This is not an Phone number: " + phoneInput.Text);
+                    return;
+                }
+
                 string qry = "";
 
                 if (id == 0) // insert
@@ -51,7 +57,11 @@ namespace POS_System.Model
             }
             else
                 myMessageBox.Show("Please fill the all inputs.");
+        }
 
+        private void phoneInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

@@ -197,12 +197,14 @@
             this.codeInput.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.codeInput.Location = new System.Drawing.Point(69, 295);
             this.codeInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.codeInput.MaxLength = 6;
             this.codeInput.Name = "codeInput";
             this.codeInput.PasswordChar = '\0';
             this.codeInput.PlaceholderText = "Password Reset Code";
             this.codeInput.SelectedText = "";
             this.codeInput.Size = new System.Drawing.Size(355, 61);
             this.codeInput.TabIndex = 0;
+            this.codeInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codeInput_KeyPress);
             // 
             // label4
             // 

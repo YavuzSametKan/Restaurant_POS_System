@@ -29,7 +29,8 @@ namespace POS_System.View
         {
             string qry = $"SELECT pID,pName,pPrice,categoryID,c.catName FROM products p INNER JOIN category c ON c.catID = p.categoryID WHERE pName LIKE '%{searchInput.Text}%' " +
                 $"OR c.catName LIKE '%{searchInput.Text}%' " +
-                $"OR pPrice LIKE '%{searchInput.Text}%'";
+                $"OR pPrice LIKE '%{searchInput.Text}%' " + 
+                "ORDER BY pID DESC";
             ListBox lb = new ListBox();
             lb.Items.Add(dgvid);
             lb.Items.Add(dgvName);
@@ -62,9 +63,6 @@ namespace POS_System.View
                 frmProductAdd frm = new frmProductAdd();
                 frm.id = Convert.ToInt32(guna2DataGridView1.CurrentRow.Cells["dgvid"].Value);
                 frm.cID = Convert.ToInt32(guna2DataGridView1.CurrentRow.Cells["dgvCatID"].Value);
-                /*frm.nameInput.Text = Convert.ToString(guna2DataGridView1.CurrentRow.Cells["dgvName"].Value);
-                frm.priceInput.Text = Convert.ToString(guna2DataGridView1.CurrentRow.Cells["dgvPrice"].Value);
-                frm.categoryComboBox.Text = Convert.ToString(guna2DataGridView1.CurrentRow.Cells["dgvCat"].Value);*/
                 AddBlurToForm.BlurBackground(frm);
                 GetData();
             }

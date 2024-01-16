@@ -22,7 +22,7 @@ namespace POS_System.View
 
         public void GetData()
         {
-            string qry = $"SELECT * FROM category WHERE catName LIKE '%{searchInput.Text}%'";
+            string qry = $"SELECT * FROM category WHERE catName LIKE '%{searchInput.Text}%' ORDER BY catID DESC";
             ListBox lb = new ListBox();
             lb.Items.Add(dgvid);
             lb.Items.Add(dgvName);
@@ -33,9 +33,6 @@ namespace POS_System.View
         public override void addBtn_Click(object sender, EventArgs e)
         {
             AddBlurToForm.BlurBackground(new frmCategoryAdd());
-
-            //frmCategoryAdd frm = new frmCategoryAdd();
-            //frm.ShowDialog();
 
             GetData();
         }

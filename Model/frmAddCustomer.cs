@@ -50,10 +50,21 @@ namespace POS_System.Model
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            if(nameInput.Text != "" && phoneInput.Text != "" && driverComboBox.Text != "" && adressInput.Text != "")
+            if (!(phoneInput.Text.All(char.IsDigit) && (phoneInput.Text.Length >= 7 && phoneInput.Text.Length <= 15)))
+            {
+                myWarningMessageBox.Show("This is not an Phone number: " + phoneInput.Text);
+                return;
+            }
+
+            if (nameInput.Text != "" && phoneInput.Text != "" && driverComboBox.Text != "" && adressInput.Text != "")
                 this.Close();
             else
                 myWarningMessageBox.Show("Please fill the all inputs.");
+        }
+
+        private void phoneInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,23 @@ namespace POS_System
         public frmMain()
         {
             InitializeComponent();
+            
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            userLabel.Text = userName;
+            _obj = this;
+            AddControls(new frmHome());
+            homeBtn.Checked = true;
+            lblLocalTime.Text = DateTime.Now.ToLongTimeString();
+            lblDate.Text = DateTime.Now.ToString("dd MMM yyyy ddd", new CultureInfo("en-US"));
+            localTime.Start();
+        }
+
+        private void localTime_Tick(object sender, EventArgs e)
+        {
+            lblLocalTime.Text = DateTime.Now.ToLongTimeString();
         }
 
         // for accessing frm main
@@ -52,12 +70,6 @@ namespace POS_System
             Application.Exit();
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            userLabel.Text = userName;
-            _obj = this;
-        }
-
         private void homeBtn_Click(object sender, EventArgs e)
         {
             AddControls(new frmHome());
@@ -87,6 +99,8 @@ namespace POS_System
         {
             frmPOS frm = new frmPOS();
             frm.ShowDialog();
+            AddControls(new frmKitchenView());
+            kitchenBtn.Checked = true;
         }
 
         private void kitchenBtn_Click(object sender, EventArgs e)

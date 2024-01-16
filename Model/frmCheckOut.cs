@@ -35,14 +35,20 @@ namespace POS_System.Model
             {
                 paymentMethod = "Credit Card";
                 paymentReceivedInput.Enabled = false;
+                pennyInput.Enabled = false;
                 billAmountInput.Text = amount.ToString();
-                paymentReceivedInput.Text = amount.ToString();
+                string[] priceParts = amount.ToString().Contains('.') ? amount.ToString().Split('.') : amount.ToString().Split(',');
+                paymentReceivedInput.Text = priceParts[0];
+                pennyInput.Text = priceParts.Length > 1 ? priceParts[1] : "";
                 changeInput.Text = "0";
             }
             else if(paymentMethodCB.Text == "Cash")
             {
                 paymentMethod = "Cash";
+                paymentReceivedInput.Text = "";
+                pennyInput.Text = "";
                 paymentReceivedInput.Enabled = true;
+                pennyInput.Enabled = true;
             }
         }
 
@@ -62,15 +68,15 @@ namespace POS_System.Model
         {
             if(paymentMethodCB.Text != "")
             {
-                if (paymentReceivedInput.Text != "" && Convert.ToDouble(paymentReceivedInput.Text) >= amount)
+                if (paymentReceivedInput.Text != "" && Convert.ToDouble(paymentReceivedInput.Text + "." + pennyInput.Text) >= amount)
                 {
                     string qry = @"UPDATE tblMain SET paymentMethod = @paymentMethod, total = @total, received = @received, change = @change, status = 'Paid' WHERE mainID = @ID";
 
                     Hashtable ht = new Hashtable();
                     ht.Add("@paymentMethod", paymentMethod);
                     ht.Add("@total", Convert.ToDouble(billAmountInput.Text));
-                    ht.Add("@received", Convert.ToDouble(paymentReceivedInput.Text));
-                    ht.Add("@change", Convert.ToDouble(changeInput.Text));
+                    ht.Add("@received", paymentReceivedInput.Text + "." + pennyInput.Text);
+                    ht.Add("@change", double.Parse(double.Parse(changeInput.Text).ToString("0.000")));
                     ht.Add("@ID", MainID);
 
                     if (DataBaseOperations.CRUDOperations.SQL(qry, ht) > 0)
@@ -93,13 +99,16 @@ namespace POS_System.Model
         public override void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
-            AddBlurToForm.BlurBackground(new frmBillList());
         }
 
         private void guna2ControlBox1_Click(object sender, EventArgs e)
         {
             this.Close();
-            AddBlurToForm.BlurBackground(new frmBillList());
+        }
+
+        private void paymentReceivedInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

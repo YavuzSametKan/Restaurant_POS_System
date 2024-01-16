@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.cloaseBtn = new Guna.UI2.WinForms.Guna2Button();
@@ -42,9 +43,12 @@
             this.homeBtn = new Guna.UI2.WinForms.Guna2Button();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblLocalTime = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.userLabel = new System.Windows.Forms.Label();
             this.CenterPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.localTime = new System.Windows.Forms.Timer(this.components);
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -121,7 +125,7 @@
             this.usersBtn.Image = global::POS_System.Properties.Resources.user_w;
             this.usersBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.usersBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.usersBtn.Location = new System.Drawing.Point(38, 489);
+            this.usersBtn.Location = new System.Drawing.Point(40, 489);
             this.usersBtn.Name = "usersBtn";
             this.usersBtn.Size = new System.Drawing.Size(210, 58);
             this.usersBtn.TabIndex = 1;
@@ -154,7 +158,7 @@
             this.ordersBtn.Image = global::POS_System.Properties.Resources.bills_w;
             this.ordersBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.ordersBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.ordersBtn.Location = new System.Drawing.Point(38, 553);
+            this.ordersBtn.Location = new System.Drawing.Point(40, 553);
             this.ordersBtn.Name = "ordersBtn";
             this.ordersBtn.Size = new System.Drawing.Size(210, 58);
             this.ordersBtn.TabIndex = 1;
@@ -187,7 +191,7 @@
             this.kitchenBtn.Image = global::POS_System.Properties.Resources.kitchen_w;
             this.kitchenBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.kitchenBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.kitchenBtn.Location = new System.Drawing.Point(38, 681);
+            this.kitchenBtn.Location = new System.Drawing.Point(40, 681);
             this.kitchenBtn.Name = "kitchenBtn";
             this.kitchenBtn.Size = new System.Drawing.Size(210, 58);
             this.kitchenBtn.TabIndex = 1;
@@ -220,7 +224,7 @@
             this.POSBtn.Image = global::POS_System.Properties.Resources.POS_w;
             this.POSBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.POSBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.POSBtn.Location = new System.Drawing.Point(38, 617);
+            this.POSBtn.Location = new System.Drawing.Point(40, 617);
             this.POSBtn.Name = "POSBtn";
             this.POSBtn.Size = new System.Drawing.Size(210, 58);
             this.POSBtn.TabIndex = 1;
@@ -253,7 +257,7 @@
             this.staffBtn.Image = global::POS_System.Properties.Resources.staff_w;
             this.staffBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.staffBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.staffBtn.Location = new System.Drawing.Point(38, 425);
+            this.staffBtn.Location = new System.Drawing.Point(40, 425);
             this.staffBtn.Name = "staffBtn";
             this.staffBtn.Size = new System.Drawing.Size(210, 58);
             this.staffBtn.TabIndex = 1;
@@ -286,7 +290,7 @@
             this.tablesBtn.Image = global::POS_System.Properties.Resources.tables_w;
             this.tablesBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.tablesBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.tablesBtn.Location = new System.Drawing.Point(38, 361);
+            this.tablesBtn.Location = new System.Drawing.Point(40, 361);
             this.tablesBtn.Name = "tablesBtn";
             this.tablesBtn.Size = new System.Drawing.Size(210, 58);
             this.tablesBtn.TabIndex = 1;
@@ -319,7 +323,7 @@
             this.productsBtn.Image = global::POS_System.Properties.Resources.products_w;
             this.productsBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.productsBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.productsBtn.Location = new System.Drawing.Point(38, 297);
+            this.productsBtn.Location = new System.Drawing.Point(40, 297);
             this.productsBtn.Name = "productsBtn";
             this.productsBtn.Size = new System.Drawing.Size(210, 58);
             this.productsBtn.TabIndex = 1;
@@ -352,7 +356,7 @@
             this.categoriesBtn.Image = global::POS_System.Properties.Resources.categories_w;
             this.categoriesBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.categoriesBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.categoriesBtn.Location = new System.Drawing.Point(38, 233);
+            this.categoriesBtn.Location = new System.Drawing.Point(40, 233);
             this.categoriesBtn.Name = "categoriesBtn";
             this.categoriesBtn.Size = new System.Drawing.Size(210, 58);
             this.categoriesBtn.TabIndex = 1;
@@ -385,7 +389,7 @@
             this.homeBtn.Image = global::POS_System.Properties.Resources.house_white;
             this.homeBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.homeBtn.ImageOffset = new System.Drawing.Point(10, 0);
-            this.homeBtn.Location = new System.Drawing.Point(38, 169);
+            this.homeBtn.Location = new System.Drawing.Point(40, 169);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Size = new System.Drawing.Size(210, 58);
             this.homeBtn.TabIndex = 1;
@@ -416,6 +420,8 @@
             this.guna2Panel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.guna2Panel2.BorderRadius = 20;
             this.guna2Panel2.BorderThickness = 2;
+            this.guna2Panel2.Controls.Add(this.lblDate);
+            this.guna2Panel2.Controls.Add(this.lblLocalTime);
             this.guna2Panel2.Controls.Add(this.label1);
             this.guna2Panel2.Controls.Add(this.userLabel);
             this.guna2Panel2.CustomizableEdges.BottomLeft = false;
@@ -427,6 +433,30 @@
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(1068, 54);
             this.guna2Panel2.TabIndex = 0;
+            // 
+            // lblDate
+            // 
+            this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblDate.ForeColor = System.Drawing.Color.Gray;
+            this.lblDate.Location = new System.Drawing.Point(924, 24);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(125, 21);
+            this.lblDate.TabIndex = 2;
+            this.lblDate.Text = "01 Jan 1970 Thu";
+            // 
+            // lblLocalTime
+            // 
+            this.lblLocalTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLocalTime.AutoSize = true;
+            this.lblLocalTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblLocalTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblLocalTime.Location = new System.Drawing.Point(978, 3);
+            this.lblLocalTime.Name = "lblLocalTime";
+            this.lblLocalTime.Size = new System.Drawing.Size(70, 21);
+            this.lblLocalTime.TabIndex = 2;
+            this.lblLocalTime.Text = "00:00:00";
             // 
             // label1
             // 
@@ -445,7 +475,7 @@
             this.userLabel.AutoSize = true;
             this.userLabel.BackColor = System.Drawing.Color.Transparent;
             this.userLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.userLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
+            this.userLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.userLabel.Location = new System.Drawing.Point(101, 16);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(40, 21);
@@ -459,6 +489,12 @@
             this.CenterPanel.Name = "CenterPanel";
             this.CenterPanel.Size = new System.Drawing.Size(1068, 818);
             this.CenterPanel.TabIndex = 0;
+            // 
+            // localTime
+            // 
+            this.localTime.Enabled = true;
+            this.localTime.Interval = 1000;
+            this.localTime.Tick += new System.EventHandler(this.localTime_Tick);
             // 
             // frmMain
             // 
@@ -504,5 +540,8 @@
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Button cloaseBtn;
         private Guna.UI2.WinForms.Guna2Button ordersBtn;
+        private System.Windows.Forms.Label lblLocalTime;
+        private System.Windows.Forms.Timer localTime;
+        private System.Windows.Forms.Label lblDate;
     }
 }

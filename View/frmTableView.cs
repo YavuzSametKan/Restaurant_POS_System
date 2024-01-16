@@ -27,7 +27,7 @@ namespace POS_System.View
 
         public void GetData()
         {
-            string qry = $"SELECT * FROM tables WHERE tName LIKE '%{searchInput.Text}%'";
+            string qry = $"SELECT * FROM tables WHERE tName LIKE '%{searchInput.Text}%' ORDER BY tid DESC";
             ListBox lb = new ListBox();
             lb.Items.Add(dgvid);
             lb.Items.Add(dgvName);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.closeBtn = new Guna.UI2.WinForms.Guna2ControlBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -37,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.codeInput = new Guna.UI2.WinForms.Guna2TextBox();
             this.myMessageBox = new Guna.UI2.WinForms.Guna2MessageDialog();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -114,7 +116,7 @@
             this.confirmBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
             this.confirmBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.confirmBtn.ForeColor = System.Drawing.Color.White;
-            this.confirmBtn.Location = new System.Drawing.Point(0, 351);
+            this.confirmBtn.Location = new System.Drawing.Point(0, 320);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(486, 80);
             this.confirmBtn.TabIndex = 13;
@@ -125,7 +127,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(69, 216);
+            this.label2.Location = new System.Drawing.Point(69, 189);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 25);
             this.label2.TabIndex = 15;
@@ -144,14 +146,16 @@
             this.codeInput.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.codeInput.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.codeInput.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.codeInput.Location = new System.Drawing.Point(68, 246);
+            this.codeInput.Location = new System.Drawing.Point(68, 219);
             this.codeInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.codeInput.MaxLength = 6;
             this.codeInput.Name = "codeInput";
             this.codeInput.PasswordChar = '\0';
             this.codeInput.PlaceholderText = "Password Visible Code";
             this.codeInput.SelectedText = "";
             this.codeInput.Size = new System.Drawing.Size(355, 64);
             this.codeInput.TabIndex = 14;
+            this.codeInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codeInput_KeyPress);
             // 
             // myMessageBox
             // 
@@ -162,13 +166,18 @@
             this.myMessageBox.Style = Guna.UI2.WinForms.MessageDialogStyle.Default;
             this.myMessageBox.Text = null;
             // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // frmVisibleToPassword
             // 
             this.AcceptButton = this.confirmBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(486, 431);
+            this.ClientSize = new System.Drawing.Size(486, 400);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.codeInput);
             this.Controls.Add(this.confirmBtn);
@@ -176,7 +185,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmVisibleToPassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVisibleToPassword";
@@ -199,5 +208,6 @@
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2TextBox codeInput;
         private Guna.UI2.WinForms.Guna2MessageDialog myMessageBox;
+        private System.Windows.Forms.Timer timer;
     }
 }

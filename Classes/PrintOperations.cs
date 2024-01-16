@@ -98,6 +98,15 @@ namespace POS_System.Classes
             return result;
         }
 
+        public static DataTable DT(string qry)
+        {
+            SQLiteCommand cmd = new SQLiteCommand(qry, DataBaseOperations.DataBaseConnection.con);
+            SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
         public static string PrintSaledProduct(int weight, string[] headers, string fromThisDate, string toThisDate, string currency, string qry, SQLiteConnection con)
         {
             SQLiteCommand cmd = new SQLiteCommand(qry, con);
@@ -105,6 +114,8 @@ namespace POS_System.Classes
             DataTable dt = new DataTable();
             da.Fill(dt);
             int totalHeadersLenght = 0;
+            fromThisDate = DateTime.Parse(fromThisDate).ToString("yyyy-MM-dd");
+            toThisDate = DateTime.Parse(toThisDate).ToString("yyyy-MM-dd");
 
             for (int i = 0; i < headers.Length; i++)
                 totalHeadersLenght += headers[i].Length;
@@ -126,16 +137,16 @@ namespace POS_System.Classes
             }
             result += "\n" + printCharacterAtLenght('─', weight+25-columnWeight) + "\n";
 
-            double totalEarnings = 0;
+            string totalEarningsQry = "SELECT COALESCE(SUM(total), 0) FROM tblMain " +
+                                      $"WHERE substr(date, 7, 4) || '-' || substr(date, 4, 2) || '-' || substr(date, 1, 2) BETWEEN '{fromThisDate}' AND '{toThisDate}' " +
+                                      "AND status = 'Paid'";
+            string totalEarnings = DT(totalEarningsQry).Rows[0][0].ToString();
             for (int r = 0; r < dt.Rows.Count; r++)
             {
                 for (int c = 0; c < dt.Columns.Count; c++)
                 {
                     if(c == 3) // product name column
                         columnWeight = 25;
-
-                    if (c == 6) // amount column
-                        totalEarnings += double.Parse(dt.Rows[r][c].ToString());
 
                     if (dt.Rows[r][c].ToString().Length > columnWeight)
                         dt.Rows[r][c] = dt.Rows[r][c].ToString().Substring(0, columnWeight - 3) + "...";
@@ -149,7 +160,7 @@ namespace POS_System.Classes
                 }
                 result += "\n";
             }
-            result += "\n"+TextAlignRight($"FROM THIS DATE: {fromThisDate}, TO THIS DATE: {toThisDate}, TOTAL EARNINGS: {totalEarnings}{currency}", weight+25-columnWeight) + "\n";
+            result += "\n"+TextAlignRight($"FROM THIS DATE: {DateTime.Parse(fromThisDate).ToString("dd.MM.yyyy")}, TO THIS DATE: {DateTime.Parse(toThisDate).ToString("dd.MM.yyyy")}, TOTAL EARNINGS: {totalEarnings}{currency}", weight+25-columnWeight) + "\n";
             return result;
         }
 
@@ -174,7 +185,7 @@ namespace POS_System.Classes
             result += "|────────────────────  ─────  ───────  ───────|\n";
             foreach (DataRow row in dt.Rows)
             {
-                string productName = row["pName"].ToString();
+                string productName = row["productName"].ToString();
                 string qty = row["qty"].ToString();
                 string price = row["price"].ToString();
                 string amount = row["amount"].ToString();

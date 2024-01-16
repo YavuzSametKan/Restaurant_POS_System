@@ -194,6 +194,7 @@
             this.phoneInput.SelectedText = "";
             this.phoneInput.Size = new System.Drawing.Size(388, 50);
             this.phoneInput.TabIndex = 1;
+            this.phoneInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.phoneInput_KeyPress);
             // 
             // label4
             // 

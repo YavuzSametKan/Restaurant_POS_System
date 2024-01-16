@@ -27,13 +27,12 @@ namespace POS_System.View
 
         private void GetData()
         {
-            string qry = @"SELECT m.mainID, orderType, pName, qty, price, amount, tableName, waiterName,  status, paymentMethod, total, received, change, sName 'driver name', customerName, customerPhone, customerAdress, isEditted, date, time 
+            string qry = @"SELECT m.mainID, orderType, productName, qty, price, amount, tableName, waiterName,  status, paymentMethod, total, received, change, sName 'driver name', customerName, customerPhone, customerAdress, isEditted, date, time 
                       FROM tblMain m 
                       INNER JOIN tblDetails d ON m.mainID = d.mainID 
-                      LEFT JOIN staff s ON m.driverID = s.staffID 
-                      INNER JOIN products p ON d.productID = p.pID " +
+                      LEFT JOIN staff s ON m.driverID = s.staffID " +
                       $"WHERE (substr(date, 7, 4) || '-' || substr(date, 4, 2) || '-' || substr(date, 1, 2) BETWEEN '{fromThisDate.Value.ToString("yyyy-MM-dd")}' AND '{toThisDate.Value.ToString("yyyy-MM-dd")}') " +
-                      $"AND (pName LIKE '%{searchInput.Text}%' " +
+                      $"AND (productName LIKE '%{searchInput.Text}%' " +
                       $"OR waiterName LIKE '%{searchInput.Text}%' " +
                       $"OR sName LIKE '%{searchInput.Text}%' " +
                       $"OR customerName LIKE '%{searchInput.Text}%' " +
@@ -83,9 +82,8 @@ namespace POS_System.View
         private string printingData;
         private void printButton_Click(object sender, EventArgs e)
         {
-            string printingDatasQry = @"SELECT m.mainID 'Order', orderType, paymentMethod, pName, qty, price, amount, received, change, total, date, time FROM tblMain m
+            string printingDatasQry = @"SELECT m.mainID 'Order', orderType, paymentMethod, productName, qty, price, amount, received, change, total, date, time FROM tblMain m
                                       INNER JOIN tblDetails d ON m.mainID = d.mainID
-                                      INNER JOIN products p ON d.productID = p.pID
                                       WHERE substr(date, 7, 4) || '-' || substr(date, 4, 2) || '-' || substr(date, 1, 2) BETWEEN '" + fromThisDate.Value.ToString("yyyy-MM-dd") + "' AND '" + toThisDate.Value.ToString("yyyy-MM-dd") + @"' 
                                       ORDER BY m.mainID DESC";
             string[] headers = { "Order", "Ordr Typ", "Pymnt Mthd", "Product", "Qty", "Price", "Amount", "Received", "Change", "Total", "Date", "Time" };

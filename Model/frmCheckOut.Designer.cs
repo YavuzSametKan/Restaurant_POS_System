@@ -37,6 +37,8 @@
             this.changeInput = new Guna.UI2.WinForms.Guna2TextBox();
             this.paymentMethodCB = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.pennyInput = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -132,9 +134,10 @@
             this.paymentReceivedInput.PasswordChar = '\0';
             this.paymentReceivedInput.PlaceholderText = "Payment Received";
             this.paymentReceivedInput.SelectedText = "";
-            this.paymentReceivedInput.Size = new System.Drawing.Size(313, 50);
+            this.paymentReceivedInput.Size = new System.Drawing.Size(213, 50);
             this.paymentReceivedInput.TabIndex = 6;
             this.paymentReceivedInput.TextChanged += new System.EventHandler(this.paymentReceivedInput_TextChanged);
+            this.paymentReceivedInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.paymentReceivedInput_KeyPress);
             // 
             // label3
             // 
@@ -193,14 +196,48 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Payment Method";
             // 
+            // pennyInput
+            // 
+            this.pennyInput.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.pennyInput.DefaultText = "";
+            this.pennyInput.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.pennyInput.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.pennyInput.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.pennyInput.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.pennyInput.Enabled = false;
+            this.pennyInput.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.pennyInput.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.pennyInput.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.pennyInput.Location = new System.Drawing.Point(631, 285);
+            this.pennyInput.Name = "pennyInput";
+            this.pennyInput.PasswordChar = '\0';
+            this.pennyInput.PlaceholderText = "Penny";
+            this.pennyInput.SelectedText = "";
+            this.pennyInput.Size = new System.Drawing.Size(79, 50);
+            this.pennyInput.TabIndex = 6;
+            this.pennyInput.TextChanged += new System.EventHandler(this.paymentReceivedInput_TextChanged);
+            this.pennyInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.paymentReceivedInput_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(612, 310);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 25);
+            this.label5.TabIndex = 10;
+            this.label5.Text = ".";
+            // 
             // frmCheckOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 466);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.paymentMethodCB);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.changeInput);
+            this.Controls.Add(this.pennyInput);
             this.Controls.Add(this.paymentReceivedInput);
             this.Controls.Add(this.billAmountInput);
             this.Controls.Add(this.label3);
@@ -210,16 +247,18 @@
             this.Name = "frmCheckOut";
             this.Text = "frmCheckOut";
             this.Load += new System.EventHandler(this.frmCheckOut_Load);
-            this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.guna2ControlBox1, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.billAmountInput, 0);
             this.Controls.SetChildIndex(this.paymentReceivedInput, 0);
+            this.Controls.SetChildIndex(this.pennyInput, 0);
             this.Controls.SetChildIndex(this.changeInput, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.paymentMethodCB, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.label5, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -238,5 +277,7 @@
         public Guna.UI2.WinForms.Guna2TextBox changeInput;
         public Guna.UI2.WinForms.Guna2ComboBox paymentMethodCB;
         private System.Windows.Forms.Label label4;
+        public Guna.UI2.WinForms.Guna2TextBox pennyInput;
+        private System.Windows.Forms.Label label5;
     }
 }

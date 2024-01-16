@@ -33,7 +33,14 @@ namespace POS_System.Model
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (guna2DataGridView1.Rows.Count > 0)
+            {
+                myMessageBox.Buttons = Guna.UI2.WinForms.MessageDialogButtons.YesNo;
+                if (myMessageBox.Show("Are you sure you want to exit from the POS?") == DialogResult.Yes)
+                    this.Close();
+            } 
+            else
+                this.Close();
         }
 
         private void frmPOS_Load(object sender, EventArgs e)
@@ -60,7 +67,7 @@ namespace POS_System.Model
                 {
                     Guna.UI2.WinForms.Guna2Button btn = new Guna.UI2.WinForms.Guna2Button();
                     btn.FillColor = Color.FromArgb(253, 184, 39);
-                    btn.Size = new Size(196, 60);
+                    btn.Size = new Size(170, 60);
                     btn.Font = new Font("Segoe UI", 12, FontStyle.Bold);
                     btn.Cursor = Cursors.Hand;
                     btn.BorderRadius = 10;
@@ -202,7 +209,7 @@ namespace POS_System.Model
                     {
                         Byte[] imageArray = (byte[])item["pImage"];
                         AddItems("0", item["pID"].ToString(), item["pName"].ToString(), item["catName"].ToString(), item["pPrice"].ToString(), Image.FromStream(new MemoryStream(imageArray)));
-                        loading.progressBar.Value += 100/dt.Rows.Count;
+                        loading.progressBar.Value += (int)Math.Ceiling(100.0/(double)dt.Rows.Count);
                     }
                 }
                 catch (Exception ex)
@@ -560,18 +567,19 @@ namespace POS_System.Model
 
             if (detailID == 0) // Insert
             {
-                qry = @"INSERT INTO tblDetails (mainID, productID, qty, price, amount) 
-                            VALUES (@mainID, @productID, @qty, @price, @amount)";
+                qry = @"INSERT INTO tblDetails (mainID, productID, productName, qty, price, amount) 
+                            VALUES (@mainID, @productID, @productName, @qty, @price, @amount)";
             }
             else // Update
             {
-                qry = @"UPDATE tblDetails SET productID = @productID, qty = @qty, price = @price, amount = @amount WHERE detailID = @ID";
+                qry = @"UPDATE tblDetails SET productID = @productID, productName = @productName, qty = @qty, price = @price, amount = @amount WHERE detailID = @ID";
             }
 
             SQLiteCommand cmd2 = new SQLiteCommand(qry, DataBaseOperations.DataBaseConnection.con);
             cmd2.Parameters.AddWithValue("@ID", detailID);
             cmd2.Parameters.AddWithValue("@mainID", MainID);
             cmd2.Parameters.AddWithValue("@productID", Convert.ToInt32(row.Cells["dgvProID"].Value));
+            cmd2.Parameters.AddWithValue("@productName", row.Cells["dgvName"].Value.ToString());
             cmd2.Parameters.AddWithValue("@qty", Convert.ToInt32(row.Cells["dgvQty"].Value));
             cmd2.Parameters.AddWithValue("@price", Convert.ToDouble(row.Cells["dgvPrice"].Value));
             cmd2.Parameters.AddWithValue("@amount", Convert.ToDouble(row.Cells["dgvAmount"].Value));
@@ -638,14 +646,12 @@ namespace POS_System.Model
                 editBtn.Visible = true;
                 LoadEntries();
             }
-            
         }
 
         private void LoadEntries()
         {
             string qry = @"SELECT * FROM tblMain m
                           INNER JOIN tblDetails d ON m.mainID = d.mainID
-                          INNER JOIN products p ON p.pID = d.productID
                           LEFT JOIN staff s ON s.staffID = m.driverID AND m.driverID <> 0
                           WHERE m.mainID = " + id + "";
 
@@ -653,48 +659,50 @@ namespace POS_System.Model
             DataTable dt = new DataTable();
             SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
             da.Fill(dt);
-
-            if (dt.Rows[0]["orderType"].ToString() == "Delivery")
+            if (dt != null && dt.Rows.Count > 0)
             {
-                OrderType = "Delivery";
-                deliveryBtn.Checked = true;
-                label6.Visible = true;
-                label3.Visible = false;
-                label4.Visible = false;
-                driverLabel.Text = dt.Rows[0]["sName"].ToString() + " will delivery to " + dt.Rows[0]["customerName"].ToString() + " (" + dt.Rows[0]["customerPhone"].ToString() + ")";
-                driverLabel.Visible = true;
-                waiterLabel.Visible = false;
-                tableLabel.Visible = false;
-                waiterLabel.Text = "";
-                tableLabel.Text = "";
-            }
-            else if(dt.Rows[0]["orderType"].ToString() == "Take Away")
-            {
-                OrderType = "Take Away";
-                takeAwayBtn.Checked = true;
-                waiterLabel.Visible = false;
-                tableLabel.Visible = false;
-                driverLabel.Visible = false;
-                waiterLabel.Text = "";
-                tableLabel.Text = "";
-                driverLabel.Text = "";
-                label3.Visible = false;
-                label4.Visible = false;
-                label6.Visible = false;
-            }
-            else
-            {
-                OrderType = "Dine In";
-                dineInBtn.Checked = true;
-                waiterLabel.Text = dt.Rows[0]["waiterName"].ToString();
-                waiterLabel.Visible = true;
-                tableLabel.Text = dt.Rows[0]["tableName"].ToString();
-                tableLabel.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label6.Visible = false;
-                driverLabel.Visible = false;
-                driverLabel.Text = "";
+                if (dt.Rows[0]["orderType"].ToString() == "Delivery")
+                {
+                    OrderType = "Delivery";
+                    deliveryBtn.Checked = true;
+                    label6.Visible = true;
+                    label3.Visible = false;
+                    label4.Visible = false;
+                    driverLabel.Text = dt.Rows[0]["sName"].ToString() + " will delivery to " + dt.Rows[0]["customerName"].ToString() + " (" + dt.Rows[0]["customerPhone"].ToString() + ")";
+                    driverLabel.Visible = true;
+                    waiterLabel.Visible = false;
+                    tableLabel.Visible = false;
+                    waiterLabel.Text = "";
+                    tableLabel.Text = "";
+                }
+                else if(dt.Rows[0]["orderType"].ToString() == "Take Away")
+                {
+                    OrderType = "Take Away";
+                    takeAwayBtn.Checked = true;
+                    waiterLabel.Visible = false;
+                    tableLabel.Visible = false;
+                    driverLabel.Visible = false;
+                    waiterLabel.Text = "";
+                    tableLabel.Text = "";
+                    driverLabel.Text = "";
+                    label3.Visible = false;
+                    label4.Visible = false;
+                    label6.Visible = false;
+                }
+                else if (dt.Rows[0]["orderType"].ToString() == "Dine In")
+                {
+                    OrderType = "Dine In";
+                    dineInBtn.Checked = true;
+                    waiterLabel.Text = dt.Rows[0]["waiterName"].ToString();
+                    waiterLabel.Visible = true;
+                    tableLabel.Text = dt.Rows[0]["tableName"].ToString();
+                    tableLabel.Visible = true;
+                    label3.Visible = true;
+                    label4.Visible = true;
+                    label6.Visible = false;
+                    driverLabel.Visible = false;
+                    driverLabel.Text = "";
+                }
             }
 
             guna2DataGridView1.Rows.Clear();
@@ -702,7 +710,7 @@ namespace POS_System.Model
             foreach (DataRow item in dt.Rows)
             {
                 string detailID = item["detailID"].ToString();
-                string productName = item["pName"].ToString();
+                string productName = item["productName"].ToString();
                 string productID = item["productID"].ToString();
                 string qty = item["qty"].ToString();
                 string price = item["price"].ToString();
@@ -777,11 +785,15 @@ namespace POS_System.Model
 
         private void holdBtn_Click(object sender, EventArgs e)
         {
-            if (OrderType != "")
+            if (guna2DataGridView1.Rows.Count == 0)
             {
-                // Save the datas in database
+                myWarningMessageBox.Show("You didn't select any product.");
+                return;
+            }
 
-                int detailID = 0;
+            // Save the datas in database
+
+            int detailID = 0;
 
                 // for mainTable
                 mainTalbeDataOP("Hold");
@@ -810,9 +822,6 @@ namespace POS_System.Model
                 dineInBtn.Checked = false;
                 takeAwayBtn.Checked = false;
                 deliveryBtn.Checked = false;
-            }
-            else
-                myWarningMessageBox.Show("Please select an order type");
         }
     }
 }

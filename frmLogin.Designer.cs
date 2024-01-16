@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.closeBtn = new Guna.UI2.WinForms.Guna2ControlBox();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.userNameInput = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,60 +37,13 @@
             this.iForgotMyPasswordLink = new System.Windows.Forms.LinkLabel();
             this.passwordVisibilityBtn = new Guna.UI2.WinForms.Guna2Button();
             this.MyWarningMessage = new Guna.UI2.WinForms.Guna2MessageDialog();
-            this.panel1.SuspendLayout();
+            this.closeBtn = new Guna.UI2.WinForms.Guna2ControlBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.closeBtn);
-            this.panel1.Controls.Add(this.guna2PictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(500, 197);
-            this.panel1.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(0, 143);
-            this.label1.MinimumSize = new System.Drawing.Size(500, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(500, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Please enter your user informations.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // closeBtn
-            // 
-            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closeBtn.FillColor = System.Drawing.Color.Red;
-            this.closeBtn.IconColor = System.Drawing.Color.White;
-            this.closeBtn.Location = new System.Drawing.Point(470, 0);
-            this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(30, 29);
-            this.closeBtn.TabIndex = 0;
-            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox1.Image = global::POS_System.Properties.Resources.user;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(0, 32);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Padding = new System.Windows.Forms.Padding(40);
-            this.guna2PictureBox1.Size = new System.Drawing.Size(500, 98);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox1.TabIndex = 2;
-            this.guna2PictureBox1.TabStop = false;
-            this.guna2PictureBox1.UseTransparentBackground = true;
             // 
             // userNameInput
             // 
@@ -224,6 +173,57 @@
             this.MyWarningMessage.Style = Guna.UI2.WinForms.MessageDialogStyle.Default;
             this.MyWarningMessage.Text = null;
             // 
+            // closeBtn
+            // 
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closeBtn.FillColor = System.Drawing.Color.Red;
+            this.closeBtn.IconColor = System.Drawing.Color.White;
+            this.closeBtn.Location = new System.Drawing.Point(470, 0);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(30, 29);
+            this.closeBtn.TabIndex = 0;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(0, 143);
+            this.label1.MinimumSize = new System.Drawing.Size(500, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(500, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Please enter your user informations.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox1.FillColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox1.Image = global::POS_System.Properties.Resources.user;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(0, 32);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Padding = new System.Windows.Forms.Padding(40);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(500, 98);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 2;
+            this.guna2PictureBox1.TabStop = false;
+            this.guna2PictureBox1.UseTransparentBackground = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(184)))), ((int)(((byte)(39)))));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.closeBtn);
+            this.panel1.Controls.Add(this.guna2PictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(500, 197);
+            this.panel1.TabIndex = 5;
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.LoginBtn;
@@ -246,19 +246,15 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
             this.Load += new System.EventHandler(this.LoginForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2ControlBox closeBtn;
         private Guna.UI2.WinForms.Guna2TextBox userNameInput;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -266,8 +262,11 @@
         private Guna.UI2.WinForms.Guna2Button LoginBtn;
         private System.Windows.Forms.LinkLabel iForgotMyPasswordLink;
         private Guna.UI2.WinForms.Guna2Button passwordVisibilityBtn;
-        private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2MessageDialog MyWarningMessage;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2ControlBox closeBtn;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

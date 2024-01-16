@@ -10,6 +10,7 @@ using System.Collections;
 using System.Windows.Forms;
 using System.Drawing;
 
+
 namespace POS_System.Classes
 {
     public class DataBaseOperations
@@ -17,7 +18,7 @@ namespace POS_System.Classes
         public class DataBaseConnection
         {
             private readonly static string dataBaseName = "POS_System.db";
-            private readonly static string dbConnectSqlCommand = $"Data source=.\\{dataBaseName};Version=3";
+            private readonly static string dbConnectSqlCommand = $"Data source=.\\{dataBaseName};Version=3;Read Only=False;";
             public static SQLiteConnection con = new SQLiteConnection(dbConnectSqlCommand);
         }
 

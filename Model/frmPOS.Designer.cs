@@ -291,9 +291,8 @@
             this.driverLabel.ForeColor = System.Drawing.Color.White;
             this.driverLabel.Location = new System.Drawing.Point(874, 37);
             this.driverLabel.Name = "driverLabel";
-            this.driverLabel.Size = new System.Drawing.Size(113, 25);
+            this.driverLabel.Size = new System.Drawing.Size(0, 25);
             this.driverLabel.TabIndex = 2;
-            this.driverLabel.Text = "driver name";
             this.driverLabel.Visible = false;
             // 
             // label6
@@ -365,9 +364,8 @@
             this.waiterLabel.ForeColor = System.Drawing.Color.White;
             this.waiterLabel.Location = new System.Drawing.Point(825, 53);
             this.waiterLabel.Name = "waiterLabel";
-            this.waiterLabel.Size = new System.Drawing.Size(132, 30);
+            this.waiterLabel.Size = new System.Drawing.Size(0, 30);
             this.waiterLabel.TabIndex = 2;
-            this.waiterLabel.Text = "waiter name";
             this.waiterLabel.Visible = false;
             // 
             // label3
@@ -395,9 +393,8 @@
             this.tableLabel.ForeColor = System.Drawing.Color.White;
             this.tableLabel.Location = new System.Drawing.Point(812, 15);
             this.tableLabel.Name = "tableLabel";
-            this.tableLabel.Size = new System.Drawing.Size(121, 30);
+            this.tableLabel.Size = new System.Drawing.Size(0, 30);
             this.tableLabel.TabIndex = 2;
-            this.tableLabel.Text = "table name";
             this.tableLabel.Visible = false;
             // 
             // label1
@@ -505,6 +502,7 @@
             // 
             this.categoryPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.categoryPanel.AutoScroll = true;
             this.categoryPanel.Controls.Add(this.allCategoryBtn);
             this.categoryPanel.Location = new System.Drawing.Point(9, 156);
             this.categoryPanel.Name = "categoryPanel";
@@ -525,7 +523,7 @@
             this.allCategoryBtn.ForeColor = System.Drawing.Color.White;
             this.allCategoryBtn.Location = new System.Drawing.Point(3, 3);
             this.allCategoryBtn.Name = "allCategoryBtn";
-            this.allCategoryBtn.Size = new System.Drawing.Size(196, 60);
+            this.allCategoryBtn.Size = new System.Drawing.Size(170, 60);
             this.allCategoryBtn.TabIndex = 0;
             this.allCategoryBtn.Text = "All";
             this.allCategoryBtn.Click += new System.EventHandler(this.allCategoryBtn_Click);

@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>C:\Users\yssk3\OneDrive\Masaüstü\123321\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -120,10 +120,10 @@
     <Compile Include="frmEnterEmail.Designer.cs">
       <DependentUpon>frmEnterEmail.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmHome.cs">
+    <Compile Include="View\frmHome.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmHome.Designer.cs">
+    <Compile Include="View\frmHome.Designer.cs">
       <DependentUpon>frmHome.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
@@ -290,7 +290,7 @@
     <EmbeddedResource Include="frmEnterEmail.resx">
       <DependentUpon>frmEnterEmail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmHome.resx">
+    <EmbeddedResource Include="View\frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
@@ -545,6 +545,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fork-spoon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\category-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\categories-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table-green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unpaid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\staff-tenn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

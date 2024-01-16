@@ -68,18 +68,28 @@ namespace POS_System.Model
                 try
                 {
                     if (File.Exists(filePath) && IsImage(filePath))
-                    {
                         imageInput.Image = new Bitmap(filePath);
-                    }
                     else
-                    {
                         myMessageBox.Show("The selected file is not a valid image file.");
-                    }
                 }
                 catch (Exception ex)
                 {
                     myMessageBox.Show($"An error occurred: {ex.Message}");
                 }
+            }
+        }
+
+        private bool AreImagesEqual(Image img1, Image img2)
+        {
+            if (img1 == null || img2 == null)
+                return false;
+
+            using (MemoryStream ms1 = new MemoryStream(), ms2 = new MemoryStream())
+            {
+                img1.Save(ms1, img1.RawFormat);
+                img2.Save(ms2, img2.RawFormat);
+
+                return ms1.ToArray().SequenceEqual(ms2.ToArray());
             }
         }
 
@@ -95,7 +105,9 @@ namespace POS_System.Model
                     qry = "UPDATE products SET pName = @Name, pPrice = @Price, categoryID = @CatID, pImage = @Img WHERE pID = @id ";
 
                 // For Image
-                int width = 450, height = 360;
+                if (AreImagesEqual(imageInput.Image, Properties.Resources.image))
+                    imageInput.Image = Properties.Resources.logo;
+                int width = 364, height = 268;
                 Image temp = new Bitmap(imageInput.Image, width, height);
                 MemoryStream ms = new MemoryStream();
                 temp.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
@@ -104,7 +116,7 @@ namespace POS_System.Model
                 Hashtable ht = new Hashtable();
                 ht.Add("@id", id);
                 ht.Add("@Name", nameInput.Text.Trim());
-                ht.Add("@Price", priceInput.Text.Trim());
+                ht.Add("@Price", priceInput.Text + "." + pennyInput.Text);
                 ht.Add("@CatID", Convert.ToInt32(categoryComboBox.SelectedValue));
                 ht.Add("@Img", imageByteArray);
 
@@ -115,6 +127,7 @@ namespace POS_System.Model
                     cID = 0;
                     nameInput.Text = "";
                     priceInput.Text = "";
+                    pennyInput.Text = "";
                     categoryComboBox.SelectedIndex = 0;
                     categoryComboBox.SelectedIndex = -1;
                     imageInput.Image = POS_System.Properties.Resources.image;
@@ -136,12 +149,19 @@ namespace POS_System.Model
             if(dt.Rows.Count > 0)
             {
                 nameInput.Text = dt.Rows[0]["pName"].ToString();
-                priceInput.Text = dt.Rows[0]["pPrice"].ToString();
+
+                string[] priceParts = dt.Rows[0]["pPrice"].ToString().Contains('.') ? dt.Rows[0]["pPrice"].ToString().Split('.') : dt.Rows[0]["pPrice"].ToString().Split(',');
+                priceInput.Text = priceParts[0];
+                pennyInput.Text = priceParts.Length > 1 ? priceParts[1] : "";
 
                 Byte[] imageArray = (byte[])(dt.Rows[0]["pImage"]);
-                //byte[] imageByteArray = imageArray;
                 imageInput.Image = Image.FromStream(new MemoryStream(imageArray));
             }
+        }
+
+        private void priceInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

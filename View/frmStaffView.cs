@@ -29,7 +29,8 @@ namespace POS_System.View
         {
             string qry = $"SELECT * FROM staff WHERE sName LIKE '%{searchInput.Text}%' " +
                 $"OR sPhone LIKE '%{searchInput.Text}%' " +
-                $"OR sRole LIKE '%{searchInput.Text}%'";
+                $"OR sRole LIKE '%{searchInput.Text}%'" +
+                "ORDER BY staffID DESC";
             ListBox lb = new ListBox();
             lb.Items.Add(dgvid);
             lb.Items.Add(dgvName);

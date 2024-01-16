@@ -71,5 +71,10 @@ namespace POS_System
             frmLogin loginPage = new frmLogin();
             loginPage.Show();
         }
+
+        private void codeInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 }

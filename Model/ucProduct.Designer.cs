@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucProduct));
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -81,11 +80,11 @@
             // 
             // imageInput
             // 
-            this.imageInput.Image = ((System.Drawing.Image)(resources.GetObject("imageInput.Image")));
+            this.imageInput.Image = global::POS_System.Properties.Resources.logo;
             this.imageInput.ImageRotate = 0F;
-            this.imageInput.Location = new System.Drawing.Point(7, 10);
+            this.imageInput.Location = new System.Drawing.Point(9, 9);
             this.imageInput.Name = "imageInput";
-            this.imageInput.Size = new System.Drawing.Size(185, 130);
+            this.imageInput.Size = new System.Drawing.Size(182, 134);
             this.imageInput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageInput.TabIndex = 0;
             this.imageInput.TabStop = false;

@@ -18,6 +18,7 @@ namespace POS_System.Model
         private string code;
         private string email;
         public int id = 0;
+        private int countDownSeconds = 120; // 2 minutes = 120 seconds
         public frmVisibleToPassword(string code, string email)
         {
             this.email = email;
@@ -38,31 +39,43 @@ namespace POS_System.Model
             else
             {
                 confirmBtn.Visible = false;
-                codeInput.Visible = false;
-                label2.Visible = false;
-                messageLabel.Visible = false;
-                Label passwordlbl = new Label();
-                passwordlbl.AutoSize = true;
-                passwordlbl.Font = new Font("Segoe UI", 16, FontStyle.Italic);
-                passwordlbl.ForeColor = Color.Gray;
-                passwordlbl.TextAlign = ContentAlignment.MiddleCenter;
-                passwordlbl.Location = new Point(64,136);
-                passwordlbl.MaximumSize = new Size(350,0);
-                passwordlbl.MaximumSize = new Size(350,0);
+                messageLabel.Text = $"Closing Timer: {countDownSeconds / 60:D2}:{countDownSeconds % 60:D2}";
+                codeInput.ReadOnly = true;
+                label2.Text = "Your Password:";
+                this.Size = new Size(486, 320);
+                AddRoundedStyleToForm.ApplyRoundedFormStyle(this);
 
                 string qry = "SELECT password FROM users WHERE id = " + id;
                 SQLiteCommand cmd = new SQLiteCommand(qry,DataBaseOperations.DataBaseConnection.con);
                 SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                passwordlbl.Text = "password: "+dt.Rows[0]["password"].ToString();
-                this.Controls.Add(passwordlbl);
+                codeInput.Text = dt.Rows[0]["password"].ToString();
+                timer.Start();
+            }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            countDownSeconds--;
+
+            messageLabel.Text = $"Closing Timer: {countDownSeconds / 60:D2}:{countDownSeconds % 60:D2}";
+            
+            if (countDownSeconds <= 0)
+            {
+                timer.Stop();
+                this.Close();
             }
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void codeInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
