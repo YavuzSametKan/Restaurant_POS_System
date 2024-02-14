@@ -29,10 +29,11 @@ You are now ready to use the program. Enjoy!
 Note: SQLite is used as the database system in the project.
 
 1. To access the database file, download the "DB Browser for SQLite" program.
-------> Link to the program = https://sqlitebrowser.org/dl/
-2. Run the program (DB Browser for SQLite) and click on the "Open Database" button.
-3. Choose the directory where the program is installed (by default, the program is installed in the "C:\Program Files (x86)\Restaurant POS System" directory), select the POS_System.db file, and click the "Open" button.
-4. The database is now opened.
+
+          ------> Link to the program = https://sqlitebrowser.org/dl/
+3. Run the program (DB Browser for SQLite) and click on the "Open Database" button.
+4. Choose the directory where the program is installed (by default, the program is installed in the "C:\Program Files (x86)\Restaurant POS System" directory), select the POS_System.db file, and click the "Open" button.
+5. The database is now opened.
 
 You can now access the database and perform necessary operations.
 
