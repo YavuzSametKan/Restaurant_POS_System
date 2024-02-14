@@ -40,23 +40,23 @@ You can now access the database and perform necessary operations.
 | Login Page | Enter Email to Change Password Page |
 |------------|------------|
 | ![Login Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/login.png?raw=true) | ![Enter Email to Change Password Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/passwordChange.png?raw=true) |
-| <div align="center">** Reset Code Email **</div> | <div align="center">** Reset Password Page **</div> |
+| <div align="center">**Reset Code Email**</div> | <div align="center">**Reset Password Page**</div> |
 | ![Reset Code Email](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/sendEmailPage.png?raw=true) | ![Reset Password Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/resetCode.png?raw=true) |
-| <div align="center">** Home Page **</div> | <div align="center">** Category List Page **</div> |
+| <div align="center">**Home Page**</div> | <div align="center">**Category List Page**</div> |
 | ![Home Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/homePage.png?raw=true) | ![Category List Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/categoryListPage.png?raw=true) |
-| <div align="center">** Category Add **</div> | <div align="center">** Product List Page **</div> |
+| <div align="center">**Category Add**</div> | <div align="center">**Product List Page**</div> |
 | ![Category Add](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/categoryAdd.png?raw=true) | ![Product List Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/productListPage.png?raw=true) |
-| <div align="center">** Product Add **</div> | <div align="center">** User List Page **</div> |
+| <div align="center">**Product Add**</div> | <div align="center">**User List Page**</div> |
 | ![Product Add](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/productAdd.png?raw=true) | ![User List Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/userListPage.png?raw=true) |
-| <div align="center">** User Add Button Has been Clicked **</div> | <div align="center">** Create New User **</div> |
+| <div align="center">**User Add Button Has been Clicked**</div> | <div align="center">**Create New User**</div> |
 | ![User Add Button Has been Clicked](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/userListAddBtnToClick.png?raw=true) | ![Create New User](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/createNewUser.png?raw=true) |
-| <div align="center">** Order List Page **</div> | <div align="center">** Order List Print Page **</div> |
+| <div align="center">**Order List Page**</div> | <div align="center">**Order List Print Page**</div> |
 | ![Order List Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/orderListPage.png?raw=true) | ![Order List Print Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/orderListPrint.png?raw=true) |
-| <div align="center">** POS Page **</div> | <div align="center">** Check Out **</div> |
+| <div align="center">**POS Page**</div> | <div align="center">**Check Out**</div> |
 | ![POS Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/POSPage.png?raw=true) | ![Check Out](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/checkOut.png?raw=true) |
-| <div align="center">** Bill List **</div> | <div align="center">** Bill Print Page **</div> |
+| <div align="center">**Bill List**</div> | <div align="center">**Bill Print Page**</div> |
 | ![Bill List](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/billPrint.png?raw=true) | ![Bill Print Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/billPrint.png?raw=true) |
-| <div align="center">** Kitchen Page **</div> |
+| <div align="center">**Kitchen Page**</div> |
 | ![Kitchen Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/kitchenPage.png?raw=true) |
 
 ## Program Usage Video
