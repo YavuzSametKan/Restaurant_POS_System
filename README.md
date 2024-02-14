@@ -2,6 +2,11 @@
 
 This project is a C# Form application that facilitates order tracking for restaurants.
 
+## Technologies Used
+1. C# Form
+2. SQLite
+3. Guna2(C# Form UI Library)
+
 ## Installation Project
 
 1. Download or clone the project.
