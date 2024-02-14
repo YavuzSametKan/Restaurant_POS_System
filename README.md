@@ -61,7 +61,7 @@ You can now access the database and perform necessary operations.
 | ![Kitchen Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/kitchenPage.png?raw=true) |
 ## Program Usage Video
 
-
+https://www.youtube.com/watch?v=rRWLfING8bk
 
 ## Dependencies
 
