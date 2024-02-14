@@ -28,9 +28,7 @@ You are now ready to use the program. Enjoy!
 
 Note: SQLite is used as the database system in the project.
 
-1. To access the database file, download the "DB Browser for SQLite" program.
-
-          ------> Link to the program = https://sqlitebrowser.org/dl/
+1. To access the database file, download the "DB Browser for SQLite" program.------> Link to the program = https://sqlitebrowser.org/dl/
 3. Run the program (DB Browser for SQLite) and click on the "Open Database" button.
 4. Choose the directory where the program is installed (by default, the program is installed in the "C:\Program Files (x86)\Restaurant POS System" directory), select the POS_System.db file, and click the "Open" button.
 5. The database is now opened.
@@ -42,24 +40,25 @@ You can now access the database and perform necessary operations.
 | Login Page | Enter Email to Change Password Page |
 |------------|------------|
 | ![Login Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/login.png?raw=true) | ![Enter Email to Change Password Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/passwordChange.png?raw=true) |
-| Reset Code Email | Reset Password Page |
+| <div align="center">** Reset Code Email **</div> | <div align="center">** Reset Password Page **</div> |
 | ![Reset Code Email](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/sendEmailPage.png?raw=true) | ![Reset Password Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/resetCode.png?raw=true) |
-| Home Page | Category List Page |
+| <div align="center">** Home Page **</div> | <div align="center">** Category List Page **</div> |
 | ![Home Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/homePage.png?raw=true) | ![Category List Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/categoryListPage.png?raw=true) |
-| Category Add | Product List Page |
+| <div align="center">** Category Add **</div> | <div align="center">** Product List Page **</div> |
 | ![Category Add](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/categoryAdd.png?raw=true) | ![Product List Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/productListPage.png?raw=true) |
-| Product Add | User List Page |
+| <div align="center">** Product Add **</div> | <div align="center">** User List Page **</div> |
 | ![Product Add](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/productAdd.png?raw=true) | ![User List Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/userListPage.png?raw=true) |
-| User Add Button Has been Clicked | Create New User |
+| <div align="center">** User Add Button Has been Clicked **</div> | <div align="center">** Create New User **</div> |
 | ![User Add Button Has been Clicked](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/userListAddBtnToClick.png?raw=true) | ![Create New User](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/createNewUser.png?raw=true) |
-| Order List Page | Order List Print Page |
+| <div align="center">** Order List Page **</div> | <div align="center">** Order List Print Page **</div> |
 | ![Order List Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/orderListPage.png?raw=true) | ![Order List Print Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/orderListPrint.png?raw=true) |
-| POS Page | Check Out |
+| <div align="center">** POS Page **</div> | <div align="center">** Check Out **</div> |
 | ![POS Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/POSPage.png?raw=true) | ![Check Out](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/checkOut.png?raw=true) |
-| Bill List | Bill Print Page |
+| <div align="center">** Bill List **</div> | <div align="center">** Bill Print Page **</div> |
 | ![Bill List](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/billPrint.png?raw=true) | ![Bill Print Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/billPrint.png?raw=true) |
-| Kitchen Page |
+| <div align="center">** Kitchen Page **</div> |
 | ![Kitchen Page](https://github.com/YavuzSametKan/Restaurant_POS_System/blob/master/UI_images/kitchenPage.png?raw=true) |
+
 ## Program Usage Video
 
 https://www.youtube.com/watch?v=rRWLfING8bk
